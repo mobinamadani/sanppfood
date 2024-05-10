@@ -25,6 +25,8 @@ class AuthController extends Controller
             'password'=> bycrypt($request->get('password'))
         ]);
 
+        dd($request->all());
+
         auth()->login($admin);
 
         return redirect()->route('admin.dashboard');

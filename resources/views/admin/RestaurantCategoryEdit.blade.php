@@ -140,7 +140,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../discount/basic_elements.html">
+                    <a class="nav-link" href="{{route('AdminDiscount.create')}}">
                         <i class="icon-file menu-icon"></i>
                         <span class="menu-title">تخفیف ها</span>
                     </a>
@@ -172,6 +172,13 @@
                     <a class="nav-link" href="../../docs/documentation.html">
                         <i class="icon-book menu-icon"></i>
                         <span class="menu-title">ویرایش حساب کاربری</span>
+                    </a>
+                </li>
+
+                <li  class="nav-item">
+                    <a class="nav-link" href="{{route('logout')}}">
+                        <i class="icon-book menu-icon"></i>
+                        <span class="menu-title">خروج</span>
                     </a>
                 </li>
             </ul>

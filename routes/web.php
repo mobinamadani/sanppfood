@@ -44,6 +44,15 @@ Route::put('restaurantCategories/update/{id}', [\App\Http\Controllers\Admin\Rest
 Route::delete('restaurantCategories/delete/{id}', [\App\Http\Controllers\Admin\RestaurantCategoryController::class, 'destroy'])->name('restaurantCategories.delete');
 
 
+//routes of adminDiscount
+Route::get('AdminDiscount', [\App\Http\Controllers\Admin\DiscountController::class, 'index'])->name('AdminDiscount.index');
+Route::get('AdminDiscount/create', [\App\Http\Controllers\Admin\DiscountController::class, 'create'])->name('AdminDiscount.create');
+Route::post('AdminDiscount/store', [\App\Http\Controllers\Admin\DiscountController::class, 'store'])->name('AdminDiscount.store');
+Route::get('AdminDiscount/edit/{id}', [\App\Http\Controllers\Admin\DiscountController::class, 'edit'])->name('AdminDiscount.edit');
+Route::put('AdminDiscount/update/{id}', [\App\Http\Controllers\Admin\DiscountController::class, 'update'])->name('AdminDiscount.update');
+Route::delete('AdminDiscount/delete/{id}', [\App\Http\Controllers\Admin\DiscountController::class, 'destroy'])->name('AdminDiscount.delete');
+
+
 //routes of Seller
 Route::get('seller/register', [\App\Http\Controllers\Seller\RegisterController::class, 'register']);
 Route::post('seller/register', [\App\Http\Controllers\Seller\RegisterController::class, 'store'])->name('register.store');

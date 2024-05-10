@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>AdminFoodCategoryIndex</title>
+    <title>AdminDiscountIndex</title>
     <!-- base:css -->
     <link rel="stylesheet" href="../../vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="../../vendors/feather/feather.css">
@@ -190,15 +190,17 @@
                     <div class="col-md-6 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">لیست رستوران ها</h4>
+                                <h4 class="card-title">لیست تخفیف ها</h4>
                                 <p class="card-description">
 
                                 </p>
                                 <form class="forms-sample">
                                     <div class="form-group">
-                                        @foreach($foods_categories as $foods_category)
+                                        @foreach($discounts as $discount)
                                             <tr>
-                                                <td>{{ $food_category->name }}</td>
+                                                <td>{{ $discount->name }}</td>
+                                                <td>{{ $discount->price }}</td>
+                                                <td>{{ $discount->date }}</td>
                                             </tr>
                                         @endforeach
                                     </div>

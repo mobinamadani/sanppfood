@@ -140,7 +140,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../discount/basic_elements.html">
+                    <a class="nav-link" href="{{route('AdminDiscount.create')}}">
                         <i class="icon-file menu-icon"></i>
                         <span class="menu-title">تخفیف ها</span>
                     </a>

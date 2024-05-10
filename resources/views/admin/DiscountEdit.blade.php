@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>AdminFoodCategoryIndex</title>
+    <title>AdminEditDiscount</title>
     <!-- base:css -->
     <link rel="stylesheet" href="../../vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="../../vendors/feather/feather.css">
@@ -134,13 +134,13 @@
                     </a>
                     <div class="collapse" id="ui-basic">
                         <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"> <a class="nav-link" href="../../pages/ui-features/AdminCreateRestaurant.blade.php">رستوران</a></li>
-                            <li class="nav-item"> <a class="nav-link" href="../../pages/food/AdminCreateFood.blade.php">غذا</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="{{route('restaurantCategories.create')}}">رستوران</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="{{route('foodCategory.create')}}">غذا</a></li>
                         </ul>
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('AdminDiscount.create')}}">
+                    <a class="nav-link" href="../discount/basic_elements.html">
                         <i class="icon-file menu-icon"></i>
                         <span class="menu-title">تخفیف ها</span>
                     </a>
@@ -190,21 +190,29 @@
                     <div class="col-md-6 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">لیست رستوران ها</h4>
+                                <h4 class="card-title">افزودن تخفیف</h4>
                                 <p class="card-description">
-
+                                    توسط ادمین
                                 </p>
-                                <form class="forms-sample">
+                                <form class="forms-sample" action="{{route('AdminDiscount.update')}}" method="post">
+                                    @csrf
+
                                     <div class="form-group">
-                                        @foreach($foods_categories as $foods_category)
-                                            <tr>
-                                                <td>{{ $food_category->name }}</td>
-                                            </tr>
-                                        @endforeach
+                                        <input type="text" class="form-control" id="name" placeholder="نام">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input type="number" class="form-control" id="price" placeholder="قیمت">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input type="date" min="Y-m-d" class="form-control" id="date" placeholder="تاریخ">
                                     </div>
 
 
-                                    <button type="submit" class="btn btn-primary mr-2">افزودن</button>
+
+
+                                    <button type="submit" class="btn btn-primary mr-2">ویرایش</button>
                                 </form>
                             </div>
                         </div>

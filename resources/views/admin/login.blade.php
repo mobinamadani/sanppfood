@@ -13,16 +13,16 @@
         @csrf
 
         <div>
-            <input type="email" name="email" id="email" placeholder="email">
+            <input type="email" name="email" id="email" placeholder="ایمیل">
         </div>
 
         <div>
-            <input type="password" name="passsword" id="password" placeholder="password">
+            <input type="password" name="passsword" id="password" placeholder="رمز عبور">
         </div>
 
         <div>
-{{--            <a href="../admin/dashboard.blade.php">--}}
-                <input type="submit" value="Admin Login">
+            <a href="admin/dashboard">
+                <input type="submit" value="ورود">
             </a>
 
         </div>
