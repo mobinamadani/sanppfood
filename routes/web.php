@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,7 +37,7 @@ Route::delete('foodCategory/delete/{id}', [\App\Http\Controllers\Admin\FoodCateg
 
 
 //routes of AdminRestaurantCategory
-Route::get('restaurantCategories/index', [\App\Http\Controllers\Admin\RestaurantCategoryController::class])->name('restaurantCategories.index');
+Route::get('restaurantCategories/index', [\App\Http\Controllers\Admin\RestaurantCategoryController::class, 'index'])->name('restaurantCategories.index');
 Route::get('restaurantCategories/create', [\App\Http\Controllers\Admin\RestaurantCategoryController::class, 'create'])->name('restaurantCategories.create');
 Route::post('restaurantCategories/store', [\App\Http\Controllers\Admin\RestaurantCategoryController::class, 'store'])->name('restaurantCategories.store');
 Route::get('restaurantCategories/edit/{id}', [\App\Http\Controllers\Admin\RestaurantCategoryController::class, 'edit'])->name('restaurantCategories.edit');
@@ -62,3 +63,33 @@ Route::get('restaurant/form', [\App\Http\Controllers\Seller\ResturantFormControl
 
 
 
+    //routes of Admin
+//Route::prefix('admin')->controller(AuthController::class)->group(function(){
+//    Route::get('/login', 'login')->name('admin.login');
+//    Route::post('/store', 'store')->name('admin.store');
+//    Route::get('/dashboard', 'dashboard')->name('admin.dashboard');
+//    Route::get('/', 'logout')->name('admin.logout');
+//});
+
+
+    //routes of AdminFoodCategory
+//Route::prefix('foodCategory')->controller(\App\Http\Controllers\Admin\FoodCategoryController::class)->group(function(){
+//   Route::get('/index', 'index')->name('foodCategory.index');
+//   Route::get('/create', 'create')->name('foodCategory.create');
+//   Route::post('/store', 'store')->name('foodCategory.store');
+//   Route::get('/edit/{id}', 'edit')->name('foodCategory.edit');
+//   Route::put('/update/{id}', 'update')->name('foodCategory.update');
+//   Route::delete('/destroy/{id}', 'destroy')->name('foodCategory.destroy');
+//});
+
+
+
+    //routes of AdminRestaurantCategory
+//Route::prefix('restaurantCategories')->controller('RestaurantCategoryController')->group(function(){
+//   Route::get('/index', 'index')->name('restaurantCategory.index');
+//   Route::get('/create', 'create')->name('restaurantCategory.create');
+//   Route::post('/store', 'store')->name('restaurantCategory.store');
+//   Route::get('/edit/{id}', 'edit')->name('restaurantCategory.edit');
+//   Route::put('/update/{id}', 'update')->name('restaurantCategory.update');
+//   Route::delete('/delete/{id}', 'destroy')->name('restaurantCategory.delete');
+//});
