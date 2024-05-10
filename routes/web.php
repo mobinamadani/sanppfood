@@ -63,6 +63,8 @@ Route::get('restaurant/form', [\App\Http\Controllers\Seller\ResturantFormControl
 
 
 
+//**([Refactor form of routes])**
+
     //routes of Admin
 //Route::prefix('admin')->controller(AuthController::class)->group(function(){
 //    Route::get('/login', 'login')->name('admin.login');
