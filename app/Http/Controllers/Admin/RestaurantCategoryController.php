@@ -13,7 +13,7 @@ class RestaurantCategoryController extends Controller
         public function index(): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
         {
             $restaurantCategories = RestaurantCategory::all();
-           return view('admin.RestaurantCategory.index', compact('restaurantCategories'));
+           return view('admin.RestaurantCategoryIndex', compact('restaurantCategories'));
         }
 
         public function create(): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
@@ -38,7 +38,7 @@ class RestaurantCategoryController extends Controller
 
         public function edit($id): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
         {
-            $restaurantCategory = RestaurantCategory:: findOrfail($id);
+           $restaurantCategory = RestaurantCategory::query()->findOrFail($id);
             return view('admin.RestaurantCategoryEdit' ,compact('restaurantCategory'));
         }
 
@@ -55,7 +55,7 @@ class RestaurantCategoryController extends Controller
 
         public function destroy($id): \Illuminate\Http\RedirectResponse
         {
-            $restaurantCategory = RestaurantCategory::findOrFail($id);
+            $restaurantCategory = RestaurantCategory::findOrFail($id)->delete();
             $restaurantCategory->delete();
 
             return redirect()->route('admin.restaurantCategory.index');
