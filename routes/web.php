@@ -95,3 +95,14 @@ Route::get('restaurant/form', [\App\Http\Controllers\Seller\ResturantFormControl
 //   Route::put('/update/{id}', 'update')->name('restaurantCategory.update');
 //   Route::delete('/delete/{id}', 'destroy')->name('restaurantCategory.delete');
 //});
+
+
+    //routes of adminDiscount
+//Route::prefix('AdminDiscount')->controller(\App\Http\Controllers\Admin\DiscountController::class)->group(function(){
+//    Route::get('/index', 'index')->name('adminDiscount.index');
+//    Route::get('/create', 'create')->name('adminDiscount.create');
+//    Route::post('/store', 'store')->name('adminDiscount.store');
+//    Route::get('/edit/{id}', 'edit')->name('adminDiscount.edit');
+//    Route::put('/update/{id}', 'update')->name('adminDiscount.update');
+//    Route::delete('/delete/{id}', 'destroy')->name('adminDiscount.delete');
+//});
