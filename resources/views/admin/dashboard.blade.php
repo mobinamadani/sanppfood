@@ -175,13 +175,16 @@
                     </a>
                 </li>
 
+                <form action="logout" method="post">
+                    @csrf
+                    @method('DELETE')
                 <li  class="nav-item">
                     <a class="nav-link" href="{{route('logout')}}">
                         <i class="icon-book menu-icon"></i>
                         <span class="menu-title">خروج</span>
                     </a>
                 </li>
-
+                </form>
             </ul>
         </nav>
         <!-- partial -->

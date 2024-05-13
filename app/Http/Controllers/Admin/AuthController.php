@@ -14,7 +14,7 @@ class AuthController extends Controller
     }
 
 
-    public function store(LoginRequest $request): \Illuminate\Http\RedirectResponse
+    public function store(LoginRequest $request)
     {
         /**
          * @var Admin $admin

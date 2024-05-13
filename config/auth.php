@@ -44,6 +44,13 @@ return [
             'driver'=> 'sanctum',
             'provider'=>'users',
         ],
+
+        'guards'=>[
+            'api'=>[
+                'driver'=> 'sanctum',
+                'provider'=>'users',
+            ],
+        ],
     ],
 
     /*

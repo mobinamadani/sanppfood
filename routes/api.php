@@ -18,4 +18,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('admin/login', [\App\Http\Controllers\Admin\AuthController::class, 'login'] );
+
+    //**Shopper API **
+Route::post('/register', [\App\Http\Controllers\Shopper\AuthController::class, 'register']);
+Route::post('/login', [\App\Http\Controllers\Shopper\AuthController::class, 'login']);
+Route::middleware('auth:sanctum')->post('logout', [\App\Http\Controllers\Shopper\AuthController::class, 'logout']);
+
+
+
+
+
+
