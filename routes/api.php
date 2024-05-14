@@ -13,16 +13,16 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//
+//Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
 
 
     //**Shopper API **
-Route::post('/register', [\App\Http\Controllers\Shopper\AuthController::class, 'register']);
-Route::post('/login', [\App\Http\Controllers\Shopper\AuthController::class, 'login']);
-Route::middleware('auth:sanctum')->post('logout', [\App\Http\Controllers\Shopper\AuthController::class, 'logout']);
+Route::post('/shopper-register', [\App\Http\Controllers\Shopper\AuthController::class, 'register']);
+Route::post('/shopper-login', [\App\Http\Controllers\Shopper\AuthController::class, 'login']);
+Route::middleware('auth:sanctum')->post('shopper-logout', [\App\Http\Controllers\Shopper\AuthController::class, 'logout']);
 
 
 
