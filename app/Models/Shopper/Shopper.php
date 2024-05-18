@@ -1,13 +1,17 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Shopper;
 
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Foundation\Auth\User as Authenticate;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Shopper extends Model
 {
     use HasFactory;
+
+    use HasApiTokens;
 
     protected $fillable = [
       'name',

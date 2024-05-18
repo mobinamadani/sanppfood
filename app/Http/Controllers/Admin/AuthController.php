@@ -22,10 +22,10 @@ class AuthController extends Controller
 
            $admin = Admin::query()->create([
             'email'=> $request->get('email'),
-            'password'=> bycrypt($request->get('password'))
+            'password'=> bcrypt($request->get('password'))
         ]);
 
-        dd($request->all());
+//        dd($request->all());
 
         auth()->login($admin);
 

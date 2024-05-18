@@ -1,34 +1,28 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="Viewport" content=" width=device=width, initial=scale=1.0">
-    <title>Admin Login</title>
-    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
-    <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Admin Login</title>
+    <link rel="stylesheet" href="../../css/adminLogin.css">
+</head>
 <body>
-<main>
-    <form action="{{route('admin.login')}}" method="post">
-        @csrf
+<form class="login-form" action="{{route('admin.store')}}" method="post">
+    @csrf
 
-        <div>
-            <input type="email" name="email" id="email" placeholder="ایمیل">
-        </div>
+    <div class="m-r form-group">
+        <input type="email" id="email" name="email"  placeholder="ایمیل" required>
+    </div>
 
-        <div>
-            <input type="password" name="passsword" id="password" placeholder="رمز عبور">
-        </div>
+    <div class="form-group m-r">
+        <input type="password" id="password" name="password" placeholder="رمزعبور" required>
+    </div>
 
-        <div>
-            <a href="admin/dashboard">
-                <input type="submit" value="ورود">
-            </a>
+    <div class="m-l">
+        <button type="submit" class="button:hover">ورود</button>
 
-        </div>
+    </div>
 
-    </form>
-
-
-</main>
+</form>
 </body>
+</html>
