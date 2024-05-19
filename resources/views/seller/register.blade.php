@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="Viewport" content=" width=device=width, initial=scale=1.0">
-    <title>sellerRegister</title>
+    <title>ثبت نام فروشندگان</title>
     <Link rel="stylesheet"  href="">
     <link href="{{asset('css/SellerRegisterStyle.css')}}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">

@@ -1,0 +1,330 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.txt-black{
+    color: black;
+}
+
+.text-pink{
+    color: #ef4bca;
+    font-size: xx-large;
+    font-weight: bolder;
+}
+
+.text-white{
+    color: #e2e8f0;
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.text-white1{
+    color: #e2e8f0;
+    font-size: xx-large;
+    font-weight: bolder;
+}
+
+
+.txt-white{
+    color: #e2e8f0;
+}
+
+.txt-center{
+    text-align: center;
+}
+
+.txt-right{
+    text-align: right;
+}
+
+.txt-bold{
+    font-weight: bold;
+}
+
+.txt-bold2{
+    font-weight: bolder;
+}
+
+.font-size{
+    font-size: xxx-large;
+}
+
+.font-size1{
+    font-size: xx-large;
+}
+
+.font-size2{
+    font-size: medium;
+}
+
+.font-size3{
+    font-size: large;
+}
+
+.font-size4{
+    font-size: 24px;
+}
+
+.flex{
+    display: inline-flex;
+    text-decoration: none;
+}
+
+.flex2{
+    display: flex;
+}
+
+.d-flex{
+    display: flex;
+}
+
+
+
+.a:hover{
+    background-color: #f506b6;
+}
+
+.b:hover{
+    transform-style: preserve-3d;
+    background-color: #f506b6;
+}
+
+
+
+.header{
+    background-image: url("../img/2652401_QFSSL_SupremePizza_00072-d910a935ba7d448e8c7545a963ed7101.webp");
+    background-size: cover;
+    height: 360px;
+    color: white;
+}
+
+.glass-background{
+    background-color: rgba(17, 16, 17, 0.72);
+    background-size: cover;
+    height: 360px;
+}
+
+.background-gray{
+    background-color: rgba(227, 227, 227, 0.72);
+    height: 472px;
+}
+
+.background-gray2{
+    background-color: rgba(239, 239, 239, 0.72);
+    height: 212px;
+}
+
+.background-white{
+    height: 472px;
+    border-color: #ec87d4;
+}
+
+.background-footer{
+    background-color: rgba(245, 244, 244, 0.72);
+    height: 365px;
+}
+
+
+.btn-1{
+    text-align: center;
+    font-weight: bold;
+    text-decoration: none;
+    height: 30px;
+    width: 113px;
+    background-color: rgb(218, 36, 177);
+    padding: 10px 10px;
+    padding-top: 1px;
+    border-radius: 1cqb;
+}
+
+.btn-2{
+    margin-bottom: 108px;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: none;
+    height: 30px;
+    width: 120px;
+    background-color: rgb(218, 36, 177);
+    padding: 10px 10px;
+    padding-top: 1px;
+    border-radius: 1cqb;
+}
+
+.btn-3{
+    text-decoration: none;
+    height: 50px;
+    width: 155px;
+    background-color: rgb(218, 36, 177);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 1cqb;
+    border-color: rgb(218, 36, 177);
+}
+
+.border-1{
+    border-top-right-radius: 40%;
+    padding: 35px;
+}
+
+.border-2{
+    padding: 80px;
+    border-top-left-radius: 25%;
+
+}
+
+.border-3{
+    padding: 110px;
+    border-top-left-radius: 25%;
+}
+
+.border-4{
+    border-color: #457dc5;
+    padding: 35px;
+}
+
+
+.img1{
+    width: 600px;
+    height: 400px;
+}
+
+.img2{
+    width: 450px;
+    height: 350px;
+    margin-bottom: 15px;
+
+}
+
+ul {
+    list-style-type: none
+
+}
+
+l:link {
+    text-decoration: none;
+}
+
+.margin-imgs{
+    margin-top: 37px;
+    margin-left: 69px;
+}
+
+.m-r-1{
+    margin-right: 85px;
+}
+
+.m-r-2{
+    margin-right: 15px;
+}
+
+.m-r-3{
+    margin-right: 205px;
+}
+
+
+.m-l-1{
+    margin-left: 1155px;
+}
+
+.m-l-2{
+    margin-left: 1055px;
+}
+
+.{
+    margin-left: 50px;
+}
+
+.m-l-4{
+    margin-left: 695px;
+}
+
+.m-l-5{
+    margin-left: 40px;
+}
+
+.m-l-6{
+    margin-left: 450px;
+}
+
+.m-l-7{
+    margin-left: 142px;
+}
+
+.m-l-8{
+    margin-left: 280px;
+}
+
+.m-l-9{
+    margin-left: 890px;
+}
+
+.m-l-10{
+    margin-left: 450px;
+}
+
+.m-t-1{
+    margin-top: 15px ;
+}
+
+.m-t-2{
+    margin-top: 55px ;
+}
+
+.m-t-3{
+    margin-top: 145px ;
+}
+
+.m-t-4{
+    margin-top: 95px ;
+}
+
+.m-t-5{
+    margin-top: 125px ;
+}
+
+.m-b-1{
+    margin-bottom: 150px;
+}
+
+.m-b-2{
+    margin-top: 15px;
+}
+
+
+.p-t-1{
+    padding-top: 15px;
+}
+
+.p-t-2{
+    padding-top: 215px;
+}
+
+.p-t-3{
+    padding-top: 28px;
+}
+
+.p-b-1{
+    padding-bottom: 124px;
+}
+
+.p-b-2{
+    padding-bottom: 212px;
+}
+
+.p-b-3{
+    padding-bottom: 8px;
+}
+
+.line-height{
+    line-height: 4px;
+}
+
+
+
+
+
+
+
+
+
+

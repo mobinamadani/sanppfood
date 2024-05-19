@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Admin Login</title>
+    <title>ادمین</title>
     <link rel="stylesheet" href="../../css/adminLogin.css">
 </head>
 <body>

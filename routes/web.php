@@ -18,7 +18,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('home', [\App\Http\Controllers\HomeController::class, 'index']);
 
 //routes of Admin
 Route::get('admin/login', [\App\Http\Controllers\Admin\AuthController::class, 'login'])->name('admin.login');
@@ -55,11 +54,11 @@ Route::delete('AdminDiscount/delete/{id}', [\App\Http\Controllers\Admin\Discount
 
 
 //routes of Seller
-Route::get('seller/register', [\App\Http\Controllers\Seller\RegisterController::class, 'register']);
+Route::get('seller/register', [\App\Http\Controllers\Seller\RegisterController::class, 'register'])->name('seller.register');
 Route::post('seller/register', [\App\Http\Controllers\Seller\RegisterController::class, 'store'])->name('register.store');
 
 //routes of Restaurant
-Route::get('restaurant/form', [\App\Http\Controllers\Seller\ResturantFormController::class, 'create']);
+Route::get('restaurant/form', [\App\Http\Controllers\Seller\ResturantFormController::class, 'create'])->name('form.create');
 
 
 
