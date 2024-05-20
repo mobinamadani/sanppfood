@@ -111,11 +111,11 @@ body{
 
 .background-gray2{
     background-color: rgba(239, 239, 239, 0.72);
-    height: 212px;
+    height: 125px;
 }
 
 .background-white{
-    height: 472px;
+    height: 512px;
     border-color: #ec87d4;
 }
 
@@ -195,6 +195,11 @@ body{
 
 }
 
+.img3{
+    width: 40px;
+    height: 30px;
+}
+
 ul {
     list-style-type: none
 
@@ -221,6 +226,17 @@ l:link {
     margin-right: 205px;
 }
 
+.m-r-4{
+    margin-right: 356px;
+}
+
+.m-r-5{
+    margin-right: 12px;
+}
+
+.m-r-6{
+    margin-left: 95px;
+}
 
 .m-l-1{
     margin-left: 1155px;
@@ -228,10 +244,6 @@ l:link {
 
 .m-l-2{
     margin-left: 1055px;
-}
-
-.{
-    margin-left: 50px;
 }
 
 .m-l-4{
@@ -262,6 +274,10 @@ l:link {
     margin-left: 450px;
 }
 
+.m-l-11{
+    margin-left: 31px;
+}
+
 .m-t-1{
     margin-top: 15px ;
 }
@@ -279,7 +295,11 @@ l:link {
 }
 
 .m-t-5{
-    margin-top: 125px ;
+    margin-top: 45px ;
+}
+
+.m-t-6{
+    margin-top: 185px ;
 }
 
 .m-b-1{
@@ -290,6 +310,14 @@ l:link {
     margin-top: 15px;
 }
 
+.m-b-3{
+    margin-bottom: 90px;
+}
+
+
+.m-b-4{
+    margin-bottom: 30px;
+}
 
 .p-t-1{
     padding-top: 15px;
@@ -308,12 +336,14 @@ l:link {
 }
 
 .p-b-2{
-    padding-bottom: 212px;
+    padding-bottom: 88px;
 }
 
 .p-b-3{
     padding-bottom: 8px;
 }
+
+
 
 .line-height{
     line-height: 4px;
