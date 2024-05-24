@@ -14,15 +14,15 @@ class AuthController extends Controller
     }
 
 
-    public function store(LoginRequest $request)
+    public function store(LoginRequest $request): \Illuminate\Http\RedirectResponse
     {
         /**
          * @var Admin $admin
          */
 
-           $admin = Admin::query()->create([
-            'email'=> $request->get('email'),
-            'password'=> bcrypt($request->get('password'))
+        $admin = Admin::query()->create([
+            'email' => $request->get('email'),
+            'password' => bcrypt($request->get('password'))
         ]);
 
 //        dd($request->all());
@@ -31,23 +31,8 @@ class AuthController extends Controller
 
         return redirect()->route('admin.dashboard');
 
-
-
-//        request()->validate([
-//            'email' => ['required'],
-//            'password' => ['required']
-//        ]);
-//
-//        $user = User::query()->where('email', request('email'))->findOrFail();
-//        if (!Hash::check(request('password'), $user->password)) {
-//            abort('Response::HTTP_UNAUTHORIZED');
-//        }
-//
-//        $token = $user->createToken('auth')->plainTextToken;
-//        return response()->json([
-//            'token' => $token,
-//        ]);
     }
+
 
     public function dashboard(): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {

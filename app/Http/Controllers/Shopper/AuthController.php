@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Shopper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\API\ShopperAuth;
 use App\Models\Shopper\Shopper;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -17,11 +19,7 @@ class AuthController extends Controller
 //
 //        ]);
 
-        $shopper = Shopper::query()->create([
-            'name' => $request->get('name'),
-            'email' => $request->get('email'),
-            'phone_number' => $request->get('phone_number')
-        ]);
+        $shopper = Shopper::query()->create($request->validated());
         $token = $shopper->createToken('auth_token')->plainTextToken;
         return response()->json(['token' => $token], 201);
     }
@@ -34,24 +32,50 @@ class AuthController extends Controller
 
     public function login(ShopperAuth $request): \Illuminate\Http\JsonResponse
     {
-        if (auth()->attempt($request->only('name','email'))) {
-            $shopper = Auth::shopper();
-            $token = $shopper->createToken('auth_token')->plainTextToken;
-            return response()->json(['token' => $token], 200);
+        $validated = $request->validated();
+        $shopper = Shopper::query()->where('email', $validated['email'])->first();
+        $token = $shopper->createToken('Personal Access Token')->plainTextToken;
 
-        }
-        else {
-            return response()->json(['message' => 'Unauthorized'], 401);
-        }
-
-
+        return response()->json([
+            'date' => [
+                'message' =>__('response.shopper.login.success'),
+                'token' => $token
+            ]
+        ]);
 
     }
 
+
+
+
+//        if (Auth::attempt([$request])) {
+//            $shopper = Auth::user();
+//            $token = $shopper->createToken('authToken')->plainTextToken;
+//
+//            return response()->json([ 'message' => 'logged in successfully'], 200);
+//        }
+//
+//        return response()->json(['message' => 'Unauthorized'], 401);
+
+
+//        if (auth()->attempt($request->only('name','email'))) {
+//            $shopper = Auth::shopper();
+//            $request->user()->currentAccessToken()->login();
+//            return response()->json(['message' => 'Logged in successfully'], 200);
+//
+//        }
+//        else {
+//            return response()->json(['message' => 'Unauthorized'], 401);
+//        }
+
+
+
+
+
     public function logout(Request $request): \Illuminate\Http\JsonResponse
     {
-//        auth()->user()->tokens()->delete();
-        $request->user()->currentAccessToken()->delete();
+        auth()->user()->token()->delete();
+//        $request->user()->currentAccessToken()->delete();
         return response()->json(['message' => 'logged out']);
     }
 

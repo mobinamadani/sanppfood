@@ -3,18 +3,22 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\AddCategoryRequest;
+use App\Http\Requests\Admin\DeleteFoodCategoryRequest;
 use App\Http\Requests\Admin\FoodRequest;
 use App\Models\Admin\FoodCategory;
+use App\Models\Admin\RestaurantCategory;
 use Illuminate\Http\Request;
 
 class FoodCategoryController extends Controller
 {
+
     public function index(): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
-        $foodCategories = FoodCategory::all();
-
-        return view('foodIndex' , compact('foodCategories'));
+        $categories =  FoodCategory::all();
+        return view('admin.FoodCategoryIndex' , compact('categories'));
     }
+
 
     public function create(): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
@@ -22,47 +26,37 @@ class FoodCategoryController extends Controller
     }
 
 
-    public function store(Request $request): \Illuminate\Foundation\Application|\Illuminate\Routing\Redirector|\Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse
+    public function store(FoodRequest $request): \Illuminate\Foundation\Application|\Illuminate\Routing\Redirector|\Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse
     {
-        /**
-         * @var  FoodCategory $foodCategory
-         */
+        FoodCategory::query()->create($request->validated());
+        return redirect(route('admin.FoodCategoryIndex'));
+    }
 
-        $request->validate([
-           'name' => 'required',
+
+    public function edit(int $id): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
+    {
+        $foodCategory = FoodCategory::query()->where('id' , $id)->first();
+
+        return view('admin.FoodCategoryEdit' , compact( 'foodCategory','id'));
+    }
+
+
+    public function update(FoodRequest $request, int $id): \Illuminate\Foundation\Application|\Illuminate\Routing\Redirector|\Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse
+    {
+        $findFood = FoodCategory::query()->findOrFail($id);
+        $findFood->update([
+            'name'=>$request->name,
         ]);
+        return redirect(route('admin.FoodCategoryIndex'));
 
-        FoodCategory::query()->create($request->all());
-
-        return redirect('FoodCategoryIndex');
-
-//        $foodCategory = FoodCategory::query()->create($request->only(['name']));
     }
 
-    public function edit($id): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
+
+    public function destroy(int $id): \Illuminate\Foundation\Application|\Illuminate\Routing\Redirector|\Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse
     {
-        $foodCategory = FoodCategory::query()->findOrFail($id);
-        return view('admin.FoodCategoryEdit', compact('foodCategory'));
+        $food = FoodCategory::query()->findOrFail($id);
+        $food->delete();
+        return redirect(route('admin.FoodCategoryIndex'));
     }
 
-    public function update(Request $request, $id): \Illuminate\Foundation\Application|\Illuminate\Routing\Redirector|\Illuminate\Contracts\Foundation\Application
-    {
-        $foodCategory = FoodCategory::query()->findOrFail($id);
-        $request->validate([
-            'name' => 'required',
-        ]);
-        $foodCategory->update($request->all());
-        return redirect('FoodCategoryIndex');
-    }
-
-    public function destroy($id): \Illuminate\Foundation\Application|\Illuminate\Routing\Redirector|\Illuminate\Contracts\Foundation\Application
-    {
-        $foodCategory = FoodCategory::query()->findOrFail($id);
-        $foodCategory->delete();
-        return redirect('FoodCategoryIndex');
-    }
 }
-
-
-
-

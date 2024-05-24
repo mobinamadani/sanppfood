@@ -194,7 +194,7 @@
                                 <p class="card-description">
                                     توسط ادمین
                                 </p>
-                                <form class="forms-sample" action="{{route('foodCategory.create')}}" method="post">
+                                <form class="forms-sample" action="{{route('foodCategory.store')}}" method="POST">
                                     @csrf
 
                                     <div class="form-group">

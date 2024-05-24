@@ -23,13 +23,13 @@ Route::get('/', function () {
 Route::get('admin/login', [\App\Http\Controllers\Admin\AuthController::class, 'login'])->name('admin.login');
 Route::post('admin/store', [\App\Http\Controllers\Admin\AuthController::class, 'store'])->name('admin.store');
 Route::get('admin/dashboard', [\App\Http\Controllers\Admin\AuthController::class, 'dashboard'])->name('admin.dashboard');
-Route::delete('/logout', [\App\Http\Controllers\Admin\AuthController::class, 'logout'])->name('logout');
+Route::get('/logout', [\App\Http\Controllers\Admin\AuthController::class, 'logout'])->name('logout');
 
 
 //routes of AdminFoodCategory
 Route::get('foodCategory/index', [\App\Http\Controllers\Admin\FoodCategoryController::class])->name('foodCategory.index');
 Route::get('foodCategory/create', [\App\Http\Controllers\Admin\FoodCategoryController::class, 'create'])->name('foodCategory.create');
-Route::post('foodCategory/store', [\App\Http\Controllers\Admin\FoodCategoryController::class, 'store'])->name('foodCategory.store');
+Route::POST('foodCategory/store', [\App\Http\Controllers\Admin\FoodCategoryController::class, 'store'])->name('foodCategory.store');
 Route::get('foodCategory/edit/{id}', [\App\Http\Controllers\Admin\FoodCategoryController::class, 'edit'])->name('foodCategory.edit');
 Route::put('foodCategory/update/{id}', [\App\Http\Controllers\Admin\FoodCategoryController::class, 'update'])->name('foodCategory.update');
 Route::delete('foodCategory/delete/{id}', [\App\Http\Controllers\Admin\FoodCategoryController::class, 'destroy'])->name('foodCategory.delete');
