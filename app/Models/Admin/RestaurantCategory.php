@@ -9,6 +9,10 @@ class RestaurantCategory extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+    ];
+
     public function FoodCategory(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(FoodCategory::class);

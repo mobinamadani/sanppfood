@@ -196,13 +196,12 @@
                                 </p>
                                 <form class="forms-sample" action="{{route('foodCategory.store')}}" method="POST">
                                     @csrf
-
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="name" placeholder="نام غذا">
+                                        <input type="text" class="form-control" name="name" id="name" placeholder="نام غذا">
                                     </div>
 
-
                                     <button type="submit" class="btn btn-primary mr-2">افزودن</button>
+
                                 </form>
                             </div>
                         </div>

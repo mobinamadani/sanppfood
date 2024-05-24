@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('category_id_to_foods', function (Blueprint $table) {
             $table->id();
-            Schema::table('foods_categories', function (Blueprint $table) {
-                if (!Schema::hasColumn('foods_categories', 'category_id')) {
+            Schema::table('food_categories', function (Blueprint $table) {
+                if (!Schema::hasColumn('food_categories', 'category_id')) {
                     $table->foreignId('category_id')
                         ->after('id')
-                        ->constrained('foods_categories')
+                        ->constrained('food_categories')
                         ->cascadeOnDelete()
                         ->cascadeOnUpdate();
                 }

@@ -19,4 +19,9 @@ class Shopper extends Model
       'phone_number',
     ];
 
+    public function ShopperAddress(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany('App\Models\Shopper\ShopperAddress');
+    }
+
 }

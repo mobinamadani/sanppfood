@@ -22,7 +22,9 @@ class FoodCategoryController extends Controller
 
     public function create(): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
+
         return view('admin.CreateFoodCategory');
+//        dd('errors');
     }
 
 
