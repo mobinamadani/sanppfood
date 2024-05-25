@@ -3,10 +3,8 @@
 namespace App\Http\Controllers\Shopper;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\API\ShopperAuth;
+use App\Http\Requests\API\Auth\ShopperAuth;
 use App\Models\Shopper\Shopper;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -42,7 +40,6 @@ class AuthController extends Controller
                 'token' => $token
             ]
         ]);
-
     }
 
 
