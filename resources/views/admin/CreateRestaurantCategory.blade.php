@@ -198,7 +198,7 @@
                                     @csrf
 
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="name" placeholder="نام رستوران">
+                                        <input type="text" class="form-control" name="name" id="name" placeholder="نام رستوران">
                                     </div>
 
 

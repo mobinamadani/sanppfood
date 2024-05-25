@@ -193,52 +193,77 @@
                                 <h4 class="card-title">لیست رستوران ها</h4>
                                 <p class="card-description">
 
-                                </p>
-                                <form class="forms-sample">
-                                    <div class="form-group">
-                                        @foreach($restaurants_categories as $restaurants_category)
-                                            <tr>
-                                                <td>{{ $restaurant_category->name }}</td>
-                                            </tr>
-                                        @endforeach
-                                    </div>
+
+                                <table class="table table-striped">
+                                    <tr>
+                                        <th>نام</th>
+                                        <th>تاریخ ایجاد</th>
+                                        <th>اکشن</th>
+                                    </tr>
+                                    @foreach($restaurants as $key => $restaurant)
+                                      <tr>
+                                          <td>{{$restaurant->name}}</td>
+                                          <td>{{$restaurant->created_at}}</td>
+                                      <td>
+                                          <ul>
+                                              <li>
+                                                  <form action="{{ route('restaurantCategories.delete' , $category->id)}}" method="post">
+                                                      @method('DELETE')
+                                                      @csrf
+                                                      <input type="hidden" value="{{ $category->id }}" name="id">
+                                                      <input type="submit" value="Delete" >
+                                                  </form>
+                                              </li>
+                                              <li><a href="{{ route('restaurantCategories.edit' , $category->id) }}">Edit</a></li>
+                                          </ul>
+                                      </td>
+                                        </tr>
+                                    @endforeach
+                                </table>
 
 
-                                    <button type="submit" class="btn btn-primary mr-2">افزودن</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+</div>
+</div>
+</div>
 
 
+{{--                    <div class="form-group">--}}
+{{--                        @foreach($categories as $category)--}}
+{{--                            <tr>--}}
+{{--                                <td>{{$category->name}}</td>--}}
+{{--                            </tr>--}}
+{{--                        @endforeach--}}
+{{--                    </div>--}}
+{{--                    --}}
+{{--                    <button type="submit" class="btn btn-primary mr-2">افزودن</button>--}}
 
-                    <!-- content-wrapper ends -->
-                    <!-- partial:../../partials/_footer.html -->
+<!-- content-wrapper ends -->
+<!-- partial:../../partials/_footer.html -->
 
-                    <!-- partial -->
-                </div>
-                <!-- main-panel ends -->
-            </div>
-            <!-- page-body-wrapper ends -->
-        </div>
-        <!-- container-scroller -->
-        <!-- base:js -->
-        <script src="../../vendors/base/vendor.bundle.base.js"></script>
-        <!-- endinject -->
-        <!-- inject:js -->
-        <script src="../../js/off-canvas.js"></script>
-        <script src="../../js/hoverable-collapse.js"></script>
-        <script src="../../js/template.js"></script>
-        <!-- endinject -->
-        <!-- plugin js for this page -->
-        <script src="../../vendors/typeahead.js/typeahead.bundle.min.js"></script>
-        <script src="../../vendors/select2/select2.min.js"></script>
-        <!-- End plugin js for this page -->
-        <!-- Custom js for this page-->
-        <script src="../../js/file-upload.js"></script>
-        <script src="../../js/typeahead.js"></script>
-        <script src="../../js/select2.js"></script>
-        <!-- End custom js for this page-->
+<!-- partial -->
+</div>
+<!-- main-panel ends -->
+</div>
+<!-- page-body-wrapper ends -->
+</div>
+<!-- container-scroller -->
+<!-- base:js -->
+<script src="../../vendors/base/vendor.bundle.base.js"></script>
+<!-- endinject -->
+<!-- inject:js -->
+<script src="../../js/off-canvas.js"></script>
+<script src="../../js/hoverable-collapse.js"></script>
+<script src="../../js/template.js"></script>
+<!-- endinject -->
+<!-- plugin js for this page -->
+<script src="../../vendors/typeahead.js/typeahead.bundle.min.js"></script>
+<script src="../../vendors/select2/select2.min.js"></script>
+<!-- End plugin js for this page -->
+<!-- Custom js for this page-->
+<script src="../../js/file-upload.js"></script>
+<script src="../../js/typeahead.js"></script>
+<script src="../../js/select2.js"></script>
+<!-- End custom js for this page-->
 </body>
 
 </html>

@@ -20,9 +20,9 @@ class DiscountController extends Controller
 
     public function store(Request $request): \Illuminate\Http\RedirectResponse
     {
-        Discount::query()->create($request->all());
-
-        return redirect()->route('admin.DiscountIndex');
+       $discount =  Discount::query()->create($request->all());
+//        dd($discount);
+        return redirect()->route('AdminDiscount.index');
     }
 
     public function edit($id): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application

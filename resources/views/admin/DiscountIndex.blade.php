@@ -196,7 +196,7 @@
                                 </p>
                                 <form class="forms-sample">
                                     <div class="form-group">
-                                        @foreach($discounts as $discount)
+                                        @foreach($discounts as $key =>  $discount)
                                             <tr>
                                                 <td>{{ $discount->name }}</td>
                                                 <td>{{ $discount->price }}</td>

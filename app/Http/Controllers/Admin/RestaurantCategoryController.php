@@ -31,9 +31,14 @@ class RestaurantCategoryController extends Controller
 //            ]);
 //            RestaurantCategory::query()->create($data);
 
-         RestaurantCategory::query()->create($request->all());
+         $restaurant_categories = RestaurantCategory::query()->create($request->all());
+//         dd($restaurant_categories);
+         return redirect()->route('restaurantCategories.index')->with('restaurant_categories', $restaurant_categories);
 
-            return redirect()->route('admin.restaurantCategory.index');
+//         RestaurantCategory::query()->create($request->all());
+
+//         dd('name');
+//            return redirect()->route('restaurantCategories.index');
         }
 
         public function edit($id): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application

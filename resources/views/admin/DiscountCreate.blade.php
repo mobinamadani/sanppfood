@@ -198,15 +198,15 @@
                                     @csrf
 
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="name" placeholder="نام">
+                                        <input type="text" class="form-control" name="name" id="name" placeholder="نام">
                                     </div>
 
                                     <div class="form-group">
-                                        <input type="number" class="form-control" id="price" placeholder="قیمت">
+                                        <input type="number" class="form-control" name="price" id="price" placeholder="قیمت">
                                     </div>
 
                                     <div class="form-group">
-                                        <input type="date" min="Y-m-d" class="form-control" id="date" placeholder="تاریخ">
+                                        <input type="date" min="Y-m-d" class="form-control" name="date" id="date" placeholder="تاریخ">
                                     </div>
 
 
