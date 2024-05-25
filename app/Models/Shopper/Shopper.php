@@ -19,9 +19,17 @@ class Shopper extends Model
       'phone_number',
     ];
 
-    public function ShopperAddress(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function ShopperAddress(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->hasMany('App\Models\Shopper\ShopperAddress');
+        return $this->belongsToMany(ShopperAddress::class)->withPivot('current_address');
     }
 
+    public function currentAddress(): Attribute
+    {
+        return Attribute::make(
+            get: fn() => $this->shopper_addresses()
+                ->wherePivot('current_address', true)
+                ->first()
+        );
+    }
 }

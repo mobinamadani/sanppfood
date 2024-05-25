@@ -19,14 +19,34 @@ use Illuminate\Support\Facades\Route;
 //});
 
 
-    //**Shopper API **
+////////////////////////////////////   **Shopper API**    /////////////////////////////////////////////
+///
 Route::post('/shopper-register', [\App\Http\Controllers\Shopper\AuthController::class, 'register']);
 Route::post('/shopper-login', [\App\Http\Controllers\Shopper\AuthController::class, 'login']);
-Route::post('shopper-logout', [\App\Http\Controllers\Shopper\AuthController::class, 'logout']);
+//Route::post('shopper-logout', [\App\Http\Controllers\Shopper\AuthController::class, 'logout']);
+                                         //address
+//Route::get('/address-index', [\App\Http\Controllers\Shopper\AddressController::class, 'index'])->name('address.index');
+//Route::post('/address-store', [\App\Http\Controllers\Shopper\AddressController::class, 'store'])->name('address.store');
+//Route::post('/{address}', [\App\Http\Controllers\Shopper\AddressController::class, 'setCurrentAddress'])->name('address.setCurrentAddress');
+
+Route::middleware('auth:shopper')->group(function () {
+
+    //address
+    Route::prefix('address')
+        ->controller(\App\Http\Controllers\Shopper\AddressController::class)
+        ->name('address.')
+        ->group(function () {
+            Route::get('/index', 'index')->name('index');
+            Route::post('/store', 'store')->name('store');
+            Route::post('/{address}', 'setCurrent')->name('set-current');
+        });
+
+});
+
+
+
+
 
 //
 //Route::middleware('auth:api')->get('/user', function (Request $request) {
 //    return $request->user();
-
-
-

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Seller;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Seller\RegisterRequest;
 use App\Models\Seller\Seller;
+use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
 {
@@ -16,24 +17,28 @@ class RegisterController extends Controller
     public function store(RegisterRequest $request): \Illuminate\Http\RedirectResponse
     {
         /**
-         * @var seller $Seller
+         * @var seller $seller
          */
+        $validated = $request->validated();
 
         $seller = Seller::query()->create([
             'name' => $request->get('name'),
             'email'=> $request->get('email'),
             'phone_number'=> $request->get('phone_number'),
-            'password'=> bycrypt($request->get('password'))
+            'password'=> Hash::make($validated['password'])
         ]);
 
         auth()->login($seller);
-        return redirect(route('home'));
+        return redirect(route('form.create'));
 
     }
-        public function show()
+        public function dashboard(): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
         {
-
-
+            return view('seller.dashboard');
         }
+
+    private function bycrypt(mixed $get)
+    {
+    }
 
 }

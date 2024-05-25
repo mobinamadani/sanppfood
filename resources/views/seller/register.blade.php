@@ -28,24 +28,25 @@
 
      <div class="main navbar">
         <div class="signin">
-            <form>
+            <form action="{{route('register.store')}}"  method="POST">
                 @csrf
                 <label for="chk" aria-hidden="true">فرم ثبت نام فروشندگان</label>
-                <input type="text" name="name" placeholder="نام" required>
-                <input type="email" name="email" placeholder="ایمیل" required>
-                <input type="password" name="phone_number" placeholder="شماره همراه" required>
-                <input type="password" name="password" placeholder="رمزعبور" required>
-
+                <input type="text" name="name" id="name" placeholder="نام" required>
+                <input type="email" name="email" id="email" placeholder="ایمیل"  required>
+                <input type="text" name="phone_number" id="phone_number" placeholder="شماره همراه"  required>
+                <input type="password" name="password" id="password" placeholder="رمزعبور"  required>
+                <button>ثبت نام</button>
+            </form>
             </form>
         </div>
 
 
-        <div class="login">
-            <form action="{{route('register.store')}}" method="POST">
-                @csrf
-              <button>ثبت نام</button>
-            </form>
-        </div>
+{{--        <div class="login">--}}
+{{--            <form action="{{route('register.store')}}" method="POST">--}}
+{{--                @csrf--}}
+{{--              <button>ثبت نام</button>--}}
+{{--            </form>--}}
+{{--        </div>--}}
 
 
     </div>

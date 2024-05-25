@@ -19,6 +19,6 @@ class ShopperAddress extends Model
 
     public function Shopper(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(Shopper::class);
+        return $this->belongsToMany(Shopper::class);
     }
 }

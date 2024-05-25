@@ -56,6 +56,7 @@ Route::delete('AdminDiscount/delete/{id}', [\App\Http\Controllers\Admin\Discount
 //routes of Seller
 Route::get('seller/register', [\App\Http\Controllers\Seller\RegisterController::class, 'register'])->name('seller.register');
 Route::post('seller/register', [\App\Http\Controllers\Seller\RegisterController::class, 'store'])->name('register.store');
+Route::post('seller/dashboard', [\App\Http\Controllers\Seller\RegisterController::class, 'dashboard'])->name('seller.dashboard');
 
 //routes of Restaurant
 Route::get('restaurant/form', [\App\Http\Controllers\Seller\ResturantFormController::class, 'create'])->name('form.create');

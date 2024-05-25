@@ -29,7 +29,7 @@
     <div class="main navbar"
     >
         <div class="signin">
-            <form>
+            <form action="{{route('seller.dashboard')}}" method="POST">
                 @csrf
                 <label for="chk" aria-hidden="true">تکمیل مشخصات رستوران</label>
                 <input type="text" name="name" id="name" placeholder="نام رستوران" required>
@@ -41,21 +41,21 @@
                     <option value="">آش و حلیم</option>
                     <option value="">طباخی</option>
                 </select>
-                <input type="password" name="phone_number" id="phone_number" placeholder="شماره تماس" required>
+                <input type="number" name="phone_number" id="phone_number" placeholder="شماره تماس" required>
                 <input type="number" name="account" id="account" placeholder="شماره حساب" required>
                 <input type="string" name="address" id="address" placeholder="آدرس" required>
 
-
-            </form>
-        </div>
-
-
-        <div class="login">
-            <form action="{{route('register.store')}}" method="POST">
-                @csrf
                 <button>ثبت</button>
             </form>
         </div>
+
+
+{{--        <div class="login">--}}
+{{--            <form action="{{route('register.store')}}" method="POST">--}}
+{{--                @csrf--}}
+{{--                <button>ثبت</button>--}}
+{{--            </form>--}}
+{{--        </div>--}}
 
 
 

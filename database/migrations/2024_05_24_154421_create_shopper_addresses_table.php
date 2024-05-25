@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('address');
             $table->string('latitude');
             $table->string('longitude');
-            $table->foreignIdFor(\App\Models\Shopper\Shopper::class)->constrained();
+//            $table->foreignIdFor(\App\Models\Shopper\Shopper::class)->constrained();
             $table->timestamps();
         });
     }
