@@ -19,14 +19,14 @@ Route::get('/', function () {
 });
 
 
-//routes of Admin
+///routes of Admin
 Route::get('admin/login', [\App\Http\Controllers\Admin\AuthController::class, 'login'])->name('admin.login');
 Route::post('admin/store', [\App\Http\Controllers\Admin\AuthController::class, 'store'])->name('admin.store');
 Route::get('admin/dashboard', [\App\Http\Controllers\Admin\AuthController::class, 'dashboard'])->name('admin.dashboard');
 Route::get('/logout', [\App\Http\Controllers\Admin\AuthController::class, 'logout'])->name('logout');
 
 
-//routes of AdminFoodCategory
+///routes of AdminFoodCategory
 Route::get('foodCategory/index', [\App\Http\Controllers\Admin\FoodCategoryController::class])->name('foodCategory.index');
 Route::get('foodCategory/create', [\App\Http\Controllers\Admin\FoodCategoryController::class, 'create'])->name('foodCategory.create');
 Route::POST('foodCategory/store', [\App\Http\Controllers\Admin\FoodCategoryController::class, 'store'])->name('foodCategory.store');
@@ -35,7 +35,7 @@ Route::put('foodCategory/update/{id}', [\App\Http\Controllers\Admin\FoodCategory
 Route::delete('foodCategory/delete/{id}', [\App\Http\Controllers\Admin\FoodCategoryController::class, 'destroy'])->name('foodCategory.delete');
 
 
-//routes of AdminRestaurantCategory
+///routes of AdminRestaurantCategory
 Route::get('restaurantCategories/index', [\App\Http\Controllers\Admin\RestaurantCategoryController::class, 'index'])->name('restaurantCategories.index');
 Route::get('restaurantCategories/create', [\App\Http\Controllers\Admin\RestaurantCategoryController::class, 'create'])->name('restaurantCategories.create');
 Route::post('restaurantCategories/store', [\App\Http\Controllers\Admin\RestaurantCategoryController::class, 'store'])->name('restaurantCategories.store');
@@ -44,7 +44,7 @@ Route::put('restaurantCategories/update/{id}', [\App\Http\Controllers\Admin\Rest
 Route::delete('restaurantCategories/delete/{id}', [\App\Http\Controllers\Admin\RestaurantCategoryController::class, 'destroy'])->name('restaurantCategories.delete');
 
 
-//routes of adminDiscount
+///routes of adminDiscount
 Route::get('AdminDiscount', [\App\Http\Controllers\Admin\DiscountController::class, 'index'])->name('AdminDiscount.index');
 Route::get('AdminDiscount/create', [\App\Http\Controllers\Admin\DiscountController::class, 'create'])->name('AdminDiscount.create');
 Route::post('AdminDiscount/store', [\App\Http\Controllers\Admin\DiscountController::class, 'store'])->name('AdminDiscount.store');
@@ -53,7 +53,7 @@ Route::put('AdminDiscount/update/{id}', [\App\Http\Controllers\Admin\DiscountCon
 Route::delete('AdminDiscount/delete/{id}', [\App\Http\Controllers\Admin\DiscountController::class, 'destroy'])->name('AdminDiscount.delete');
 
 
-//routes of Seller
+///routes of Seller
 Route::get('seller/register', [\App\Http\Controllers\Seller\RegisterController::class, 'register'])->name('seller.register');
 Route::post('seller/register', [\App\Http\Controllers\Seller\RegisterController::class, 'store'])->name('register.store');
 Route::post('seller/login', [\App\Http\Controllers\Seller\RegisterController::class, 'login'])->name('seller.login');
@@ -61,11 +61,20 @@ Route::get('seller/logout', [\App\Http\Controllers\Seller\RegisterController::cl
 Route::get('seller/dashboard', [\App\Http\Controllers\Seller\RegisterController::class, 'dashboard'])->name('seller.dashboard');
 
 
-
-//routes of Restaurant(Seller)
+///routes of Restaurant(Seller)
+Route::get('restaurant/index',[\App\Http\Controllers\Seller\RestaurantController::class, 'index'])->name('restaurant.index');
 Route::get('restaurant/form', [\App\Http\Controllers\Seller\RestaurantController::class, 'create'])->name('form.create');
 Route::post('restaurant/store', [\App\Http\Controllers\Seller\RestaurantController::class, 'store'])->name('restaurant.store');
-Route::get('restaurant/index',[\App\Http\Controllers\Seller\RestaurantController::class, 'index'])->name('restaurant.index');
+Route::get('restaurant/edit/{id}', [\App\Http\Controllers\Seller\RestaurantController::class, 'edit'])->name('restaurant.edit');
+Route::put('restaurant/update/{id}', [\App\Http\Controllers\Seller\RestaurantController::class, 'update'])->name('restaurant.update');
+Route::delete('restaurant/delete/{id}', [\App\Http\Controllers\Seller\RestaurantController::class, 'destroy'])->name('restaurant.delete');
+
+
+
+
+
+
+
 
 
 

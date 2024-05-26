@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Seller;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Seller\Restaurant\CreateRequest;
+use App\Http\Requests\seller\restaurant\DestroyRequest;
 use App\Models\Admin\RestaurantCategory;
 use App\Models\Seller\Restaurant;
 use App\Models\Seller\Seller;
@@ -21,7 +22,7 @@ class RestaurantController extends Controller
 
     public function create(): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
-       return view('seller.resturantForm');
+       return view('seller.restaurantForm');
 //        $restaurantCategories = RestaurantCategory::all();
 //        $sellers = Seller::all();
 //        return view('seller.restaurantForm', compact('sellers', 'restaurantCategories'));
@@ -35,19 +36,23 @@ class RestaurantController extends Controller
     }
 
 
-    public function edit(Restaurant $restaurant)
+    public function edit(Restaurant $restaurant): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
-
+        $restaurantCategories = RestaurantCategory::all();
+        return view('seller.restaurantEdit', compact('restaurant', 'restaurantCategories'));
     }
 
-    public function update(Request $request, Restaurant $restaurant)
+    public function update(Request $request, Restaurant $restaurant): \Illuminate\Foundation\Application|\Illuminate\Routing\Redirector|\Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse
     {
-
+        $validated = $request->validated();
+        $restaurant->update($validated);
+        return redirect(route('seller.restaurantIndex'));
     }
 
-    public function destroy(Restaurant $restaurant)
+    public function destroy(DestroyRequest $request): \Illuminate\Http\RedirectResponse
     {
-
+        Restaurant::query()->where('id' , $request->id)->delete();
+        return back();
     }
 
 }
