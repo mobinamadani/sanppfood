@@ -51,6 +51,12 @@ return [
                 'provider'=>'users',
             ],
         ],
+
+        'seller' => [
+            'driver' => 'session',
+            'provider' => 'sellers',
+        ],
+
         'shopper' => [
             'driver' => 'sanctum',
             'provider' => 'shoppers',

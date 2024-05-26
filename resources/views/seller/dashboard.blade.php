@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>داشبورد</title>
+    <title>داشبورد فروشنده</title>
     <!-- base:css -->
     <link rel="stylesheet" href="../../vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="../../vendors/feather/feather.css">
@@ -156,11 +156,11 @@
                     </a>
                 </li>
 
-                <form action="logout" method="post">
+                <form action="{{route('seller.logout')}}" method="post">
                     @csrf
                     @method('DELETE')
                     <li  class="nav-item">
-                        <a class="nav-link" href="{{route('logout')}}">
+                        <a class="nav-link" href="{{route('seller.logout')}}">
                             <i class="icon-book menu-icon"></i>
                             <span class="menu-title">خروج</span>
                         </a>

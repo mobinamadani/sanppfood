@@ -13,20 +13,16 @@ return new class extends Migration
     {
         Schema::create('restaurants', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('restaurant_category_id')
-                ->constrained('restaurant_categories')
-                ->cascadeOnDelete()
-                ->cascadeOnUpdate();
-            $table->foreignId('seller_id')
-                ->constrained('sellers')
-                ->cascadeOnDelete()
-                ->cascadeOnUpdate();
             $table->string('name');
-            $table->json('address');
+            $table->foreignIdFor(\App\Models\Seller\Seller::class)->constrained();
+            $table->foreignIdFor(\App\Models\Admin\RestaurantCategory::class)->constrained();
             $table->string('phone_number');
+            $table->string('address');
             $table->string('account');
-            $table->boolean('is_open')->default(false);
-            $table->unsignedInteger('delivery_price')->nullable();
+            $table->string('is_open')->nullable();
+            $table->string('agenda')->nullable();
+            $table->string('total_cost')->nullable();
+            $table->string('photo')->nullable();
             $table->timestamps();
         });
     }

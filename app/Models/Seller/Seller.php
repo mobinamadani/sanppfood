@@ -21,4 +21,9 @@ class Seller extends Model implements \Illuminate\Contracts\Auth\Authenticatable
             'password',
         ];
 
+    public function restaurant(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Restaurant::class);
+    }
+
 }
