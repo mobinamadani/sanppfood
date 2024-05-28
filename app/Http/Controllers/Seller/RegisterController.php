@@ -38,7 +38,7 @@ class RegisterController extends Controller
         if (Auth::guard('seller')->attempt($request->validated())) {
             $request->session()->regenerate();
 
-            return redirect(route('seller.dashboard'));
+          return view('seller.login');
         }
 
     }

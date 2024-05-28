@@ -15,17 +15,16 @@ class RestaurantController extends Controller
 {
     public function index(): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
-        $userId = Auth::id();
-        $restaurants = Restaurant::query()->where('user_id', Auth::id())->get();
+        $user_id = Auth::id();
+        $restaurants = Restaurant::query()->where('seller_id', Auth::id())->get();
         return view('seller.restaurantIndex', compact('restaurants'));
     }
 
-    public function create(): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
+    public function create(int $sellerId): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
-       return view('seller.restaurantForm');
-//        $restaurantCategories = RestaurantCategory::all();
+        $restaurantCategories = RestaurantCategory::all();
 //        $sellers = Seller::all();
-//        return view('seller.restaurantForm', compact('sellers', 'restaurantCategories'));
+        return view('seller.resturantForm', compact('sellerId', 'restaurantCategories'));
     }
 
     public function store(CreateRequest $request): \Illuminate\Foundation\Application|\Illuminate\Routing\Redirector|\Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse

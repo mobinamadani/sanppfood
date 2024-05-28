@@ -56,7 +56,7 @@ Route::delete('AdminDiscount/delete/{id}', [\App\Http\Controllers\Admin\Discount
 ///routes of Seller
 Route::get('seller/register', [\App\Http\Controllers\Seller\RegisterController::class, 'register'])->name('seller.register');
 Route::post('seller/register', [\App\Http\Controllers\Seller\RegisterController::class, 'store'])->name('register.store');
-Route::post('seller/login', [\App\Http\Controllers\Seller\RegisterController::class, 'login'])->name('seller.login');
+Route::get('seller/login', [\App\Http\Controllers\Seller\RegisterController::class, 'login'])->name('seller.login');
 Route::get('seller/logout', [\App\Http\Controllers\Seller\RegisterController::class, 'logout'])->name('seller.logout');
 Route::get('seller/dashboard', [\App\Http\Controllers\Seller\RegisterController::class, 'dashboard'])->name('seller.dashboard');
 

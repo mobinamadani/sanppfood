@@ -14,7 +14,6 @@ class AddressController extends Controller
 {
     public function index(): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
-//        dd('address');
         $addresses = ShopperAddress::all();
         return AddressResource::collection($addresses);
 
@@ -28,12 +27,11 @@ class AddressController extends Controller
 
         $address = ShopperAddress::query()->create($validated);
 
-
+dd('hi');
         $address->shopper()->attach($validated['shopper_id']);
 
         return response()->json([
             'message' => __('response.address_store_success'),
-            'data' => AddressResource::make($address)
         ]);
 
 
@@ -78,6 +76,7 @@ class AddressController extends Controller
 //            'data' => AddressResource::make($shopper_address)
 //        ], Response::HTTP_OK);
     }
+
 
 
 }

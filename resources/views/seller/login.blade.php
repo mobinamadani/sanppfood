@@ -28,12 +28,12 @@
 
     <div class="main navbar">
         <div class="signin">
-            <form action="{{route('register.store')}}"  method="POST">
+            <form action="{{route('seller.login')}}"  method="POST">
                 @csrf
                 <label for="chk" aria-hidden="true">ورود</label>
                 <input type="email" name="email" id="email" placeholder="ایمیل"  required>
                 <input type="password" name="password" id="password" placeholder="رمزعبور"  required>
-                <button>وارد شوید</button>
+                <button href="{{route('seller.dashboard')}}">وارد شوید</button>
             </form>
             </form>
         </div>
