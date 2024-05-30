@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Seller;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Seller\RegisterRequest;
+use App\Http\Requests\Seller\SubmitLoginRequest;
 use App\Models\Seller\Seller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -30,15 +31,20 @@ class RegisterController extends Controller
         ]);
 
         auth()->login($seller);
-        return redirect(route('form.create'));
+        return redirect(route('seller.login'));
     }
 
-    public function login(RegisterRequest $request)
+    public function login(): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
-        if (Auth::guard('seller')->attempt($request->validated())) {
+        return view('seller.login');
+    }
+
+    public function submitLogin(SubmitLoginRequest $request)
+    {
+        if (Auth::guard('sellers')->attempt($request->validated())) {
             $request->session()->regenerate();
 
-          return view('seller.login');
+          return redirect(route('form.create'));
         }
 
     }
@@ -47,7 +53,6 @@ class RegisterController extends Controller
     {
         return view('seller.dashboard');
     }
-
 
     public function logout(): \Illuminate\Http\RedirectResponse
     {

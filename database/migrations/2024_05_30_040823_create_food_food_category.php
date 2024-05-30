@@ -11,8 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('foods', function (Blueprint $table) {
+        Schema::create('food_food_category', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(\App\Models\Seller\Food::class)->constrained()->onDelete('cascade');
+            $table->foreignIdFor(\App\Models\Admin\FoodCategory::class)->constrained()->onDelete('cascade');
+            $table->unique(['food_id' , 'food_category_id']);
             $table->timestamps();
         });
     }
@@ -22,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('foods');
+        Schema::dropIfExists('food_food_category');
     }
 };

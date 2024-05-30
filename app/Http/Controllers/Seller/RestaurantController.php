@@ -34,7 +34,6 @@ class RestaurantController extends Controller
         return redirect(route('seller.dashboard'));
     }
 
-
     public function edit(Restaurant $restaurant): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
         $restaurantCategories = RestaurantCategory::all();

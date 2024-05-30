@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 class FoodRestaurantController extends Controller
 {
-    public function index(int $restaurantId)
+    public function index(string $restaurantId): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
         $restaurantFood = Food::query()->where('restaurant_id', $restaurantId)->get();
         return IndexRestaurantResource::collection($restaurantFood);

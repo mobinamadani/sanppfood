@@ -19,7 +19,6 @@ class FoodCategoryController extends Controller
         return view('admin.FoodCategoryIndex' , compact('categories'));
     }
 
-
     public function create(): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
 
@@ -27,13 +26,11 @@ class FoodCategoryController extends Controller
 //        dd('errors');
     }
 
-
     public function store(FoodRequest $request): \Illuminate\Foundation\Application|\Illuminate\Routing\Redirector|\Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse
     {
         FoodCategory::query()->create($request->validated());
         return redirect(route('admin.FoodCategoryIndex'));
     }
-
 
     public function edit(int $id): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
@@ -41,7 +38,6 @@ class FoodCategoryController extends Controller
 
         return view('admin.FoodCategoryEdit' , compact( 'foodCategory','id'));
     }
-
 
     public function update(FoodRequest $request, int $id): \Illuminate\Foundation\Application|\Illuminate\Routing\Redirector|\Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse
     {
@@ -52,7 +48,6 @@ class FoodCategoryController extends Controller
         return redirect(route('admin.FoodCategoryIndex'));
 
     }
-
 
     public function destroy(int $id): \Illuminate\Foundation\Application|\Illuminate\Routing\Redirector|\Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse
     {

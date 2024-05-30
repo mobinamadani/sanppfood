@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('carts', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(\App\Models\Shopper\Shopper::class)->constrained()->onDelete('cascade');
+            $table->foreignIdFor(\App\Models\Seller\Seller::class)->constrained()->onDelete('cascade');
+            $table->foreignIdFor(\App\Models\Seller\Food::class)->constrained()->onDelete('cascade');
+            $table->foreignIdFor(\App\Models\Seller\Restaurant::class)->constrained()->onDelete('cascade');
+            $table->string('count');
+            $table->string('price');
             $table->timestamps();
         });
     }

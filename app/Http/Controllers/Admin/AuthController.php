@@ -13,7 +13,6 @@ class AuthController extends Controller
         return view('admin.login');
     }
 
-
     public function store(LoginRequest $request): \Illuminate\Http\RedirectResponse
     {
         /**
@@ -32,7 +31,6 @@ class AuthController extends Controller
         return redirect()->route('admin.dashboard');
 
     }
-
 
     public function dashboard(): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
