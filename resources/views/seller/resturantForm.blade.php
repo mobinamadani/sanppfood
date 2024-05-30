@@ -29,10 +29,10 @@
     <div class="main navbar"
     >
         <div class="signin">
-            <form action="{{route('restaurant.store', $seller_id)}}" method="POST">
+            <form action="{{route('restaurant.store')}}" method="POST">
                 @csrf
                 <label for="chk" aria-hidden="true">تکمیل مشخصات رستوران</label>
-                <input type="hidden" name="seller_id" id="seller_id" value="{{$seller_id}}">
+{{--                <input type="hidden" name="seller_id" id="seller_id" value="{{$seller_id}}">--}}
                 <input type="text" name="name" id="name" placeholder="نام رستوران" required>
 {{--                <input type="text" name="type" id="type" placeholder="نوع رستوران">--}}
 {{--                <select name="name" id="name" class="m-l-2 p-t-1 p-b-1 p-l-1 color-gray btn">--}}

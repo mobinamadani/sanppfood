@@ -44,9 +44,9 @@ class RegisterController extends Controller
         if (Auth::guard('sellers')->attempt($request->validated())) {
             $request->session()->regenerate();
 
-          return redirect(route('form.create'));
-        }
+            return redirect(route('form.create'));
 
+        }
     }
 
     function dashboard(): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
@@ -60,10 +60,6 @@ class RegisterController extends Controller
 
         return redirect()->route('seller.register');
     }
-
-
-
-
 
 
 

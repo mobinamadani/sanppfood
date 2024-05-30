@@ -28,11 +28,16 @@ class IndexCartResource extends JsonResource
             ],
             'food'=> [
                 'id' => $food->id,
-                ''
+                'price' => $food->price,
+                'recipe' => $food->recipe,
+                'photo' => $food->photo,
             ]
 
 
         ];
+
+
+
 
 
 
