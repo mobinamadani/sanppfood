@@ -56,13 +56,6 @@ return [
             'provider' => 'sellers',
         ],
 
-        'guards'=>[
-            'api'=>[
-                'driver'=> 'sanctum',
-                'provider'=>'users',
-            ],
-        ],
-
         'shopper' => [
             'driver' => 'sanctum',
             'provider' => 'shoppers',

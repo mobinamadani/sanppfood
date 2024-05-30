@@ -44,13 +44,25 @@ Route::middleware('auth:shopper')->group(function () {
 
 });
 
+
 ////Get Restaurant
 Route::get('restaurant', [\App\Http\Controllers\Shopper\RestaurantController::class, 'index'])->name('restaurant.index');
 Route::get('restaurant/{restaurant}', [\App\Http\Controllers\Shopper\RestaurantController::class, 'show'])->name('restaurant.show');
 Route::post('restaurant', [\App\Http\Controllers\Shopper\RestaurantController::class, 'is_open'])->name('restaurant.Open');
 
+
 ////Get Food
 Route::get('restaurants/{restaurantId}/food', [\App\Http\Controllers\Shopper\FoodRestaurantController::class, 'index'])->name('foodRestaurant.index');
+
+
+////Carts
+Route::middleware('auth:shopper')->post('AddCart' , [\App\Http\Controllers\Seller\CartController::class , 'store'])->name('cart.store');
+Route::middleware('auth:shopper')->get('IndexCart', [\App\Http\Controllers\Seller\CartController::class , 'index'])->name('cart.index');
+Route::middleware('auth:shopper')->patch('UpdateCart', [\App\Http\Controllers\Seller\CartController::class , 'update'])->name('cart.update');
+Route::middleware('auth:shopper')->get('ShowCart', [\App\Http\Controllers\Seller\CartController::class , 'show'])->name('cart.show');
+Route::middleware('auth:shopper')->get('PaymentCart', [\App\Http\Controllers\Seller\CartController::class , 'payment'])->name('cart.payment');
+
+
 
 
 
