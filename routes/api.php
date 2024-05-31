@@ -58,9 +58,9 @@ Route::get('restaurants/{restaurantId}/food', [\App\Http\Controllers\Shopper\Foo
 ////Carts
 Route::middleware('auth:shopper')->post('AddCart' , [\App\Http\Controllers\Seller\CartController::class , 'store'])->name('cart.store');
 Route::middleware('auth:shopper')->get('IndexCart', [\App\Http\Controllers\Seller\CartController::class , 'index'])->name('cart.index');
-Route::middleware('auth:shopper')->patch('UpdateCart', [\App\Http\Controllers\Seller\CartController::class , 'update'])->name('cart.update');
-Route::middleware('auth:shopper')->get('ShowCart', [\App\Http\Controllers\Seller\CartController::class , 'show'])->name('cart.show');
-Route::middleware('auth:shopper')->get('PaymentCart', [\App\Http\Controllers\Seller\CartController::class , 'payment'])->name('cart.payment');
+Route::middleware('auth:shopper')->patch('carts/{cartId}', [\App\Http\Controllers\Seller\CartController::class , 'update'])->name('cart.update');
+Route::middleware('auth:shopper')->get('carts/{cartId}', [\App\Http\Controllers\Seller\CartController::class , 'show'])->name('cart.show');
+Route::middleware('auth:shopper')->get('carts/{cartId}/payment', [\App\Http\Controllers\Seller\CartController::class , 'payment'])->name('cart.payment');
 
 
 

@@ -60,7 +60,13 @@ Route::post('seller/register', [\App\Http\Controllers\Seller\RegisterController:
 Route::get('seller/login', [\App\Http\Controllers\Seller\RegisterController::class, 'login'])->name('seller.login');
 Route::post('seller/submitLogin', [\App\Http\Controllers\Seller\RegisterController::class, 'submitLogin'])->name('seller.submitLogin');
 Route::get('seller/logout', [\App\Http\Controllers\Seller\RegisterController::class, 'logout'])->name('seller.logout');
+
+
+////Panel of Seller
 Route::get('seller/dashboard', [\App\Http\Controllers\Seller\RegisterController::class, 'dashboard'])->name('seller.dashboard');
+Route::get('restaurant/info', [\App\Http\Controllers\Seller\DashboardController::class, 'RestaurantInfo'])->name('restaurant.info');
+
+
 
 
 ////routes of Restaurant(Seller)
@@ -73,6 +79,7 @@ Route::delete('restaurant/delete/{id}', [\App\Http\Controllers\Seller\Restaurant
 
 ///routes of Food(seller dashboard)
 Route::get('food/index', [\App\Http\Controllers\Seller\FoodController::class, 'index'])->name('food.index');
+
 
 
 

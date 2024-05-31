@@ -9,6 +9,6 @@ class FoodController extends Controller
 {
     public function index()
     {
-        return view('seller.food.index');
+        return view('seller.IndexFood');
     }
 }

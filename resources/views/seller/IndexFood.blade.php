@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>داشبورد فروشنده</title>
+    <title>صفحه نمایش غذا ها</title>
     <!-- base:css -->
     <link rel="stylesheet" href="../../vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="../../vendors/feather/feather.css">
@@ -121,7 +121,7 @@
             </div>
             <ul class="nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="../../index.html">
+                    <a class="nav-link">
                         <i class="icon-box menu-icon"></i>
                         <span class="menu-title">فروشنده</span>
                     </a>
@@ -151,8 +151,8 @@
 
                 <li class="nav-item">
                     <a class="nav-link" href="../../docs/documentation.html">
-                        <i class="icon-book menu-icon"></i>
-                        <span class="menu-title">ویرایش حساب کاربری</span>
+                        <i class="icon-disc menu-icon"></i>
+                        <span class="menu-title">نمایش غذا ها</span>
                     </a>
                 </li>
 
@@ -175,25 +175,35 @@
                     <div class="col-md-6 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <h2 class="card-title">مشخصات رستوران</h2>
-                                <div>
-                                    <table>
-                                        <tr>
-                                            <th>نام</th>
-                                            <th>شماره تلفن</th>
-                                            <th>آدرس</th>
-                                            <th>شماره حساب</th>
-                                            <th>عکس</th>
-                                        </tr>
-                                        @foreach($restaurants as $restaurant)
-                                            <td>{{ $restaurant->name }}</td>
-                                            <td>{{ $restaurant->phone_number }}</td>
-                                            <td>{{ $restaurant->address }}</td>
-                                            <td>{{ $restaurant->account }}</td>
-                                            <td>{{ $restaurant->photo}}</td>
-                                        @endforeach
-                                    </table>
-                                </div>
+                                <h2 class="card-title">لیست غذا ها</h2>
+                                    <div>
+                                        <table>
+                                            <tr>
+                                                <th>نام</th>
+                                                <th>ماد اولیه</th>
+                                                <th>قیمت</th>
+                                                <th>عکس</th>
+                                                <th>دسته بندی</th>
+                                                <th>تخفیف</th>
+                                                <th>اکشن</th>
+                                            </tr>
+                                            @foreach($foods as $food)
+                                                <td>{{ $food->name }}</td>
+                                                <td>{{ $food->recipe }}</td>
+                                                <td>{{ $food->price }}</td>
+                                                <td>{{ $food->photo}}</td>
+                                            @endforeach
+                                            <td>
+                                                @foreach($food->foodcategories as $category)
+                                                    {{ $category->name }}
+                                                @endforeach
+                                            </td>
+                                            <td>{{ optional($food->discount)->name }}</td>
+
+                                        </table>
+                                    </div>
+                        </div>
+                    </div>
 
 
 
