@@ -15,21 +15,24 @@ class FoodCategoryController extends Controller
 
     public function index(): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
-        $categories =  FoodCategory::all();
-        return view('admin.FoodCategoryIndex' , compact('categories'));
+        $food_categories =  FoodCategory::all();
+        return view('admin.FoodCategoryIndex' , compact('food_categories'));
     }
 
     public function create(): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
 
         return view('admin.CreateFoodCategory');
-//        dd('errors');
+
     }
 
-    public function store(FoodRequest $request): \Illuminate\Foundation\Application|\Illuminate\Routing\Redirector|\Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse
+    public function store(AddCategoryRequest $request): \Illuminate\Foundation\Application|\Illuminate\Routing\Redirector|\Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse
     {
-        FoodCategory::query()->create($request->validated());
-        return redirect(route('admin.FoodCategoryIndex'));
+        $data = $request->validated();
+        $data['category_id'] = 1;
+
+        FoodCategory::query()->create($data);
+        return redirect(route('foodCategory.index'));
     }
 
     public function edit(int $id): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application

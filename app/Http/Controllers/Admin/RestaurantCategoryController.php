@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\AddCategoryRequest;
 use App\Http\Requests\Admin\RestaurantRequest;
 use App\Models\Admin\RestaurantCategory;
 use Illuminate\Http\Request;
@@ -12,8 +13,8 @@ class RestaurantCategoryController extends Controller
 {
         public function index(): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
         {
-            $restaurantCategories = RestaurantCategory::all();
-           return view('admin.RestaurantCategoryIndex', compact('restaurantCategories'));
+            $restaurants = RestaurantCategory::all();
+           return view('admin.RestaurantCategoryIndex', compact('restaurants'));
         }
 
         public function create(): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
@@ -47,23 +48,25 @@ class RestaurantCategoryController extends Controller
             return view('admin.RestaurantCategoryEdit' ,compact('restaurantCategory'));
         }
 
-        public function update(Request $request, $id): \Illuminate\Http\RedirectResponse
+        public function update(AddCategoryRequest $request, int $id): \Illuminate\Http\RedirectResponse
         {
-            $data = $request->validate([
-               'name' => 'required',
+//            $restaurantCategory = RestaurantCategory::query()->findOrFail($id);
+//            $restaurantCategory->update();
+
+            $findRestaurant = RestaurantCategory::query()->findOrFail($id);
+            $findRestaurant->update([
+                'name'=>$request->name,
             ]);
 
-            $restaurantCategory = RestaurantCategory::findOrFail($id);
-            $restaurantCategory->update($data);
-            return redirect()->route('admin.restaurantCategory.index');
+            return redirect()->route('restaurantCategories.index', $id);
         }
 
-        public function destroy($id): \Illuminate\Http\RedirectResponse
+        public function destroy(int $id): \Illuminate\Http\RedirectResponse
         {
-            $restaurantCategory = RestaurantCategory::findOrFail($id)->delete();
+            $restaurantCategory = RestaurantCategory::query()->findOrfail($id);
             $restaurantCategory->delete();
 
-            return redirect()->route('admin.restaurantCategory.index');
+            return redirect()->route('restaurantCategories.index');
         }
 
 

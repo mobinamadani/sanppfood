@@ -60,7 +60,7 @@ Route::middleware('auth:shopper')->post('AddCart' , [\App\Http\Controllers\Selle
 Route::middleware('auth:shopper')->get('IndexCart', [\App\Http\Controllers\Seller\CartController::class , 'index'])->name('cart.index');
 Route::middleware('auth:shopper')->patch('carts/{cartId}', [\App\Http\Controllers\Seller\CartController::class , 'update'])->name('cart.update');
 Route::middleware('auth:shopper')->get('carts/{cartId}', [\App\Http\Controllers\Seller\CartController::class , 'show'])->name('cart.show');
-Route::middleware('auth:shopper')->get('carts/{cartId}/payment', [\App\Http\Controllers\Seller\CartController::class , 'payment'])->name('cart.payment');
+Route::middleware('auth:shopper')->post('carts/{cartId}/payment', [\App\Http\Controllers\Seller\CartController::class , 'payment'])->name('cart.payment');
 
 
 

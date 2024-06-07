@@ -134,8 +134,8 @@
                     </a>
                     <div class="collapse" id="ui-basic">
                         <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"> <a class="nav-link" href="../../pages/ui-features/AdminCreateRestaurant.blade.php">رستوران</a></li>
-                            <li class="nav-item"> <a class="nav-link" href="../../pages/food/AdminCreateFood.blade.php">غذا</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="route('restaurantCategories.create')}}">رستوران</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="{{route('foodCategory.create')}}">غذا</a></li>
                         </ul>
                     </div>
                 </li>
@@ -194,19 +194,37 @@
                                 <p class="card-description">
 
                                 </p>
-                                <form class="forms-sample">
-                                    <div class="form-group">
-                                        @foreach($discounts as $key =>  $discount)
-                                            <tr>
-                                                <td>{{ $discount->name }}</td>
-                                                <td>{{ $discount->price }}</td>
-                                                <td>{{ $discount->date }}</td>
-                                            </tr>
-                                        @endforeach
-                                    </div>
+                                <table class="table table-striped">
+                                    <tr>
+                                        <th>نام</th>
+                                        <th>قیمت</th>
+                                        <th>تاریخ</th>
+                                        <th>تاریخ ایجاد</th>
+                                        <th>اکشن</th>
+                                    </tr>
+                                    @foreach($discounts as $key => $discount)
+                                        <tr>
+                                            <td>{{$discount->name}}</td>
+                                            <td>{{$discount->price}}</td>
+                                            <td>{{$discount->date}}</td>
+                                            <td>{{$discount->created_at}}</td>
+                                            <td>
+                                                <ul>
+                                                    <li>
+                                                        <form action="{{ route('AdminDiscount.delete', $discount->id)}}" method="post">
+                                                            @method('DELETE')
+                                                            @csrf
+                                                            <input type="hidden" value="{{ $discount->id }}" name="id">
+                                                            <input type="submit" value="حذف" >
+                                                        </form>
+                                                    </li>
+                                                    <li><a href="{{ route('AdminDiscount.edit' , $discount->id) }}">ویرایش</a></li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </table>
 
-
-                                    <button type="submit" class="btn btn-primary mr-2">افزودن</button>
                                 </form>
                             </div>
                         </div>

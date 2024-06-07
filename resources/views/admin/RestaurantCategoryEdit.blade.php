@@ -195,15 +195,16 @@
                                     توسط ادمین
                                 </p>
                                 <form class="forms-sample" action="{{route('restaurantCategories.update', $restaurantCategory->id)}}" method="post">
-                                    @csrf
                                     @method('PUT')
+                                    @csrf
+
 
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="name" placeholder="نام رستوران">
+                                        <input type="text" class="form-control" name="name" id="name" placeholder="نام رستوران">
                                     </div>
 
 
-                                    <button type="submit" class="btn btn-primary mr-2">,ویرایش</button>
+                                    <button type="submit" class="btn btn-primary mr-2">ویرایش</button>
                                 </form>
                             </div>
                         </div>

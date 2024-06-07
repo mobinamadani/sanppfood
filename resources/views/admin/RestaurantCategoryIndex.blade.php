@@ -134,8 +134,8 @@
                     </a>
                     <div class="collapse" id="ui-basic">
                         <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"> <a class="nav-link" href="../../pages/ui-features/AdminCreateRestaurant.blade.php">رستوران</a></li>
-                            <li class="nav-item"> <a class="nav-link" href="../../pages/food/AdminCreateFood.blade.php">غذا</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="{{route('restaurantCategories.create')}}">رستوران</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="{{route('foodCategory.create')}}">غذا</a></li>
                         </ul>
                     </div>
                 </li>
@@ -207,14 +207,14 @@
                                       <td>
                                           <ul>
                                               <li>
-                                                  <form action="{{ route('restaurantCategories.delete' , $category->id)}}" method="post">
+                                                  <form action="{{ route('restaurantCategories.delete', $restaurant->id)}}" method="post">
                                                       @method('DELETE')
                                                       @csrf
-                                                      <input type="hidden" value="{{ $category->id }}" name="id">
-                                                      <input type="submit" value="Delete" >
+                                                      <input type="hidden" value="{{ $restaurant->id }}" name="id">
+                                                      <input type="submit" value="حذف" >
                                                   </form>
                                               </li>
-                                              <li><a href="{{ route('restaurantCategories.edit' , $category->id) }}">Edit</a></li>
+                                              <li><a href="{{ route('restaurantCategories.edit' , $restaurant->id) }}">ویرایش</a></li>
                                           </ul>
                                       </td>
                                         </tr>

@@ -140,7 +140,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../discount/basic_elements.html">
+                    <a class="nav-link" href="href="{{route('AdminDiscount.create')}}">
                         <i class="icon-file menu-icon"></i>
                         <span class="menu-title">تخفیف ها</span>
                     </a>
@@ -194,19 +194,20 @@
                                 <p class="card-description">
                                     توسط ادمین
                                 </p>
-                                <form class="forms-sample" action="{{route('AdminDiscount.update')}}" method="post">
+                                <form class="forms-sample" action="{{route('AdminDiscount.update',  $discount->id)}}" method="post">
+                                    @method('PUT')
                                     @csrf
 
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="name" placeholder="نام">
+                                        <input type="text" class="form-control" name="name" id="name" placeholder="نام">
                                     </div>
 
                                     <div class="form-group">
-                                        <input type="number" class="form-control" id="price" placeholder="قیمت">
+                                        <input type="number" class="form-control" name="price" id="price" placeholder="قیمت">
                                     </div>
 
                                     <div class="form-group">
-                                        <input type="date" min="Y-m-d" class="form-control" id="date" placeholder="تاریخ">
+                                        <input type="date" min="Y-m-d" class="form-control" name="date" id="date" placeholder="تاریخ">
                                     </div>
 
 

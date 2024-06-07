@@ -203,7 +203,7 @@
                                     </div>
 
 
-                                    <button type="submit" class="btn btn-primary mr-2"> ویرایش</button>
+                                    <button type="submit" class="btn btn-primary mr-2">ویرایش</button>
                                 </form>
                             </div>
                         </div>

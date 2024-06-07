@@ -190,21 +190,39 @@
                     <div class="col-md-6 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">لیست رستوران ها</h4>
+                                <h4 class="card-title">لیست غذا ها</h4>
                                 <p class="card-description">
 
                                 </p>
-                                <form class="forms-sample">
-                                    <div class="form-group">
-                                        @foreach($foods_categories as $foods_category)
-                                            <tr>
-                                                <td>{{ $food_category->name }}</td>
-                                            </tr>
-                                        @endforeach
-                                    </div>
+
+                                <table class="table table-striped">
+                                    <tr>
+                                        <th>نام</th>
+                                        <th>تاریخ ایجاد</th>
+                                        <th>اکشن</th>
+                                    </tr>
+                                    @foreach($food_categories as $key => $food_category)
+                                        <tr>
+                                            <td>{{$food_category->name}}</td>
+                                            <td>{{$food_category->created_at}}</td>
+                                            <td>
+                                                <ul>
+                                                    <li>
+                                                        <form action="{{ route('foodCategory.delete', $food_category->id)}}" method="post">
+                                                            @method('DELETE')
+                                                            @csrf
+                                                            <input type="hidden" value="{{ $food_category->id }}" name="id">
+                                                            <input type="submit" value="حذف" >
+                                                        </form>
+                                                    </li>
+                                                    <li><a href="{{ route('foodCategory.edit' , $food_category->id) }}">ویرایش</a></li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </table>
 
 
-                                    <button type="submit" class="btn btn-primary mr-2">افزودن</button>
                                 </form>
                             </div>
                         </div>

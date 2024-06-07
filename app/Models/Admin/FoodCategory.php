@@ -11,6 +11,7 @@ class FoodCategory extends Model
 
     protected $fillable = [
         'name',
+        'category_id'
     ];
 
     public function RestaurantCategory(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
