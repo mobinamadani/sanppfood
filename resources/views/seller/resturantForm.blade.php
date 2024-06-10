@@ -3,12 +3,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="Viewport" content=" width=device=width, initial=scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>تکمیل فرم رستوران</title>
     <Link rel="stylesheet"  href="">
     <link href="{{asset('css/ResturantForm.css')}}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./fontawesome-free-5.15.4-web/css/all.min.css">
+{{--    <link rel="stylesheet" href="./fontawesome-free-5.15.4-web/css/all.min.css">--}}
     <head>
 <body>
 <main>
@@ -26,55 +26,34 @@
     </header>
 
 
-    <div class="main navbar"
-    >
+    <div class="main navbar">
         <div class="signin">
-            <form action="{{route('restaurant.store')}}" method="POST">
+
+            <form action="{{route('restaurant.store', $sellerId)}}" method="POST">
                 @csrf
-                <label for="chk" aria-hidden="true">تکمیل مشخصات رستوران</label>
-{{--                <input type="hidden" name="seller_id" id="seller_id" value="{{$seller_id}}">--}}
+
+                <h2 for="chk" aria-hidden="true">تکمیل مشخصات رستوران</h2>
+                <input type="hidden" name="seller_id" id="seller_id" value="{{$sellerId}}">
                 <input type="text" name="name" id="name" placeholder="نام رستوران" required>
-{{--                <input type="text" name="type" id="type" placeholder="نوع رستوران">--}}
-{{--                <select name="name" id="name" class="m-l-2 p-t-1 p-b-1 p-l-1 color-gray btn">--}}
-{{--                    <option value="">سنتی</option>--}}
-{{--                    <option value="">کبابی</option>--}}
-{{--                    <option value="">آش و حلیم</option>--}}
-{{--                    <option value="">طباخی</option>--}}
-{{--                </select>--}}
                 <input type="number" name="phone_number" id="phone_number" placeholder="شماره تماس" required>
                 <input type="number" name="account" id="account" placeholder="شماره حساب" required>
                 <input type="string" name="address" id="address" placeholder="آدرس" required>
                 <div>
-                    <label for="restaurant_category_id">نوع رستوران</label>
-{{--                    <select name="restaurant_category_id" id="restaurant_category_id">--}}
-{{--                        <option value="ff" selected disabled>Select a category</option>--}}
-{{--                        @foreach($restaurantCategories as $restaurantCategory)--}}
-{{--                            <option value="{{ $restaurantCategory->id }}">{{ $restaurantCategory->name }}</option>--}}
-{{--                        @endforeach--}}
-{{--                    </select>--}}
-
+{{--                    <input type="text" name="type" id="type" placeholder="نوع رستوران" required>--}}
+                    <select class="m-l-3 p-l-2 p-b-2 border-radius"  name="category_id" id="category_id">
+                        <option  value="ff" name="type" id="type" selected disabled>نوع رستوران</option>
+                        @foreach($restaurantCategories as $restaurantCategory)
+                            <option value="{{ $restaurantCategory->id }}">{{ $restaurantCategory->name }}</option>
+                        @endforeach
+                    </select>
                 </div>
 
-                <button>ثبت</button>
+                <button type="submit">ثبت</button>
             </form>
+
         </div>
-
-
-{{--        <div class="login">--}}
-{{--            <form action="{{route('register.store')}}" method="POST">--}}
-{{--                @csrf--}}
-{{--                <button>ثبت</button>--}}
-{{--            </form>--}}
-{{--        </div>--}}
-
-
-
     </div>
 </main>
-
-
-
-
 
 </body>
 

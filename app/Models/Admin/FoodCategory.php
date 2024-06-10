@@ -2,6 +2,7 @@
 
 namespace App\Models\Admin;
 
+use App\Models\seller\Food;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,9 +15,8 @@ class FoodCategory extends Model
         'category_id'
     ];
 
-    public function RestaurantCategory(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
-    {
-        return $this->belongsToMany('App\Models\Admin\RestaurantCategory');
+    public function foods(){
+        return $this->belongsToMany(Food::class ,'food_food_category' );
     }
 
 }

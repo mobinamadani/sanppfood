@@ -15,21 +15,19 @@ class FoodCategoryController extends Controller
 
     public function index(): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
-        $food_categories =  FoodCategory::all();
+        $food_categories = FoodCategory::all();
         return view('admin.FoodCategoryIndex' , compact('food_categories'));
     }
 
     public function create(): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
-
         return view('admin.CreateFoodCategory');
-
     }
 
     public function store(AddCategoryRequest $request): \Illuminate\Foundation\Application|\Illuminate\Routing\Redirector|\Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse
     {
         $data = $request->validated();
-        $data['category_id'] = 1;
+//        $data['category_id'] = 1;
 
         FoodCategory::query()->create($data);
         return redirect(route('foodCategory.index'));
@@ -48,7 +46,7 @@ class FoodCategoryController extends Controller
         $findFood->update([
             'name'=>$request->name,
         ]);
-        return redirect(route('admin.FoodCategoryIndex'));
+        return redirect(route('foodCategory.index', $id));
 
     }
 
@@ -56,7 +54,7 @@ class FoodCategoryController extends Controller
     {
         $food = FoodCategory::query()->findOrFail($id);
         $food->delete();
-        return redirect(route('admin.FoodCategoryIndex'));
+        return redirect(route('foodCategory.index'));
     }
 
 }

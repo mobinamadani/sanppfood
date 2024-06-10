@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Seller\Restaurant;
+namespace App\Http\Requests\Seller\Food;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateRequest extends FormRequest
+class AddFoodRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,12 +22,13 @@ class CreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required'],
-            'seller_id' => ['required'],
-            'category_id' => ['required', 'exists:restaurant_categories,id'],
-            'address' => ['required'],
-            'account' => ['required'],
-            'phone_number' => ['required'],
+            'name' => ['required', 'string'],
+            'recipe' => ['required', 'string'],
+            'price' => ['required'],
+            'food_category_id'=> ['required'],
+            'discount_id'=> ['string'],
+            'restaurant_id' => ['string'],
+            'seller_id' => ['string']
         ];
     }
 }

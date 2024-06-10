@@ -11,4 +11,16 @@ class DashboardController extends Controller
     {
         return view('seller.InfoRestuarant');
     }
+
+//    public function AddFood(): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
+//    {
+//        return view('seller.AddFood');
+//    }
+
+//    public function storeFood(Request $request): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
+//    {
+//        return view('seller.IndexFood');
+//    }
+
+
 }

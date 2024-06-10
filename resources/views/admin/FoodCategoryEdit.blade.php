@@ -194,12 +194,13 @@
                                 <p class="card-description">
                                     توسط ادمین
                                 </p>
-                                <form class="forms-sample" action="{{route()}}" method="post">
-                                    @csrf
+                                <form class="forms-sample" action="{{route('foodCategory.update', $foodCategory->id)}}" method="post">
                                     @method('PUT')
+                                    @csrf
+
 
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="name" placeholder="نام غذا ">
+                                        <input type="text" class="form-control" name="name" id="name" placeholder="نام غذا ">
                                     </div>
 
 

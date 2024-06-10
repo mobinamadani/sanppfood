@@ -134,9 +134,8 @@
                     </a>
                     <div class="collapse" id="ui-basic">
                         <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"> <a class="nav-link" href="{{route('restaurant.info')}}">مشخصات رستوران</a></li>
-                            <li class="nav-item"> <a class="nav-link" href="{{route('foodCategory.create')}}">ساعت کاری</a></li>
-                            <li class="nav-item"> <a class="nav-link" href="{{route('foodCategory.create')}}">هزینه ارسال</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="{{route('food.create')}}">افزودن غذا</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="{{route('food.index')}}">نمایش غذا</a></li>
                         </ul>
                     </div>
                 </li>
@@ -152,7 +151,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('food.index')}}">
                         <i class="icon-disc menu-icon"></i>
-                        <span class="menu-title">نمایش غذا ها</span>
+                        <span class="menu-title">ویرایش حساب کاربری</span>
                     </a>
                 </li>
 

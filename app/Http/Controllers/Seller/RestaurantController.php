@@ -20,34 +20,35 @@ class RestaurantController extends Controller
         return view('seller.restaurantIndex', compact('restaurants'));
     }
 
-    public function create(): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
+    public function create($sellerId): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
+        $sellerId = (int) $sellerId;
         $restaurantCategories = RestaurantCategory::all();
-//        $sellers = Seller::all();
-        return view('seller.resturantForm', compact('restaurantCategories'));
+
+        return view('seller.resturantForm', compact('restaurantCategories', 'sellerId'));
     }
 
     public function store(CreateRequest $request): \Illuminate\Foundation\Application|\Illuminate\Routing\Redirector|\Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse
     {
+//        $sellerId = $request->route('sellerId');
 //        $validated = $request->validated();
-//        Restaurant::query()->create($validated);
+//        $validated['category_id'] = 1;
+//         Restaurant::query()->create($validated);
+//        dd($request->all());
 
-        $validated = $request->validated();
-        $seller = Auth::user();
-        $categories = RestaurantCategory::all();
+        $sellerEmail = $request->input('seller_email');
+        $seller = Seller::where('email', $sellerEmail)->first();
 
-        Restaurant::query()->create([
-            'name' => $validated['name'],
-            'category_id' => $validated['category_id'],
-            'type' => $categories->where('id', $validated['category_id'])->first()->category_name,
-            'phone_number' => $validated['phone_number'],
-            'address' => $validated['address'],
-            'account' => $validated['account'],
-            'seller_id' => $seller->id,
-            'is_complete' =>true,
-        ]);
+        if ($seller) {
+            $validated = $request->validated();
+            $validated['seller_id'] = $seller->id;
 
-        return redirect(route('seller.dashboard'));
+            Restaurant::query()->create($validated);
+        }
+
+//        dd($request->all());
+        return redirect(route('seller.login'));
+
     }
 
     public function edit(Restaurant $restaurant): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
@@ -66,7 +67,7 @@ class RestaurantController extends Controller
     public function destroy(DestroyRequest $request): \Illuminate\Http\RedirectResponse
     {
         Restaurant::query()->where('id' , $request->id)->delete();
-        return back();
+        return redirect()->route('form.create');
     }
 
 }

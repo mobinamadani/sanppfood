@@ -28,7 +28,7 @@ Route::get('/logout', [\App\Http\Controllers\Admin\AuthController::class, 'logou
 
 
 ////routes of AdminFoodCategory
-Route::get('foodCategory/index', [\App\Http\Controllers\Admin\FoodCategoryController::class])->name('foodCategory.index');
+Route::get('foodCategory/index', [\App\Http\Controllers\Admin\FoodCategoryController::class, 'index'])->name('foodCategory.index');
 Route::get('foodCategory/create', [\App\Http\Controllers\Admin\FoodCategoryController::class, 'create'])->name('foodCategory.create');
 Route::POST('foodCategory/store', [\App\Http\Controllers\Admin\FoodCategoryController::class, 'store'])->name('foodCategory.store');
 Route::get('foodCategory/edit/{id}', [\App\Http\Controllers\Admin\FoodCategoryController::class, 'edit'])->name('foodCategory.edit');
@@ -67,22 +67,28 @@ Route::get('seller/dashboard', [\App\Http\Controllers\Seller\RegisterController:
 Route::get('restaurant/info', [\App\Http\Controllers\Seller\DashboardController::class, 'RestaurantInfo'])->name('restaurant.info');
 
 
-
-
 ////routes of Restaurant(Seller)
 Route::get('restaurant/index',[\App\Http\Controllers\Seller\RestaurantController::class, 'index'])->name('restaurant.index');
-Route::get('restaurant/form', [\App\Http\Controllers\Seller\RestaurantController::class, 'create'])->name('form.create');
+Route::get('restaurant/form/{sellerId}', [\App\Http\Controllers\Seller\RestaurantController::class, 'create'])->name('form.create');
 Route::post('restaurant/store', [\App\Http\Controllers\Seller\RestaurantController::class, 'store'])->name('restaurant.store');
 Route::get('restaurant/edit/{id}', [\App\Http\Controllers\Seller\RestaurantController::class, 'edit'])->name('restaurant.edit');
 Route::put('restaurant/update/{id}', [\App\Http\Controllers\Seller\RestaurantController::class, 'update'])->name('restaurant.update');
 Route::delete('restaurant/delete/{id}', [\App\Http\Controllers\Seller\RestaurantController::class, 'destroy'])->name('restaurant.delete');
+//Route::get('/seller/{sellerId}', [\App\Http\Controllers\Seller\RestaurantController::class,]);
+
 
 ///routes of Food(seller dashboard)
 Route::get('food/index', [\App\Http\Controllers\Seller\FoodController::class, 'index'])->name('food.index');
+Route::get('food/create', [\App\Http\Controllers\Seller\FoodController::class, 'create'])->name('food.create');
+Route::post('food/store', [\App\Http\Controllers\Seller\FoodController::class, 'store'])->name('food.store');
+Route::get('food/edit/{id}', [\App\Http\Controllers\Seller\FoodController::class, 'edit'])->name('food.edit');
+Route::put('food/update/{id}', [\App\Http\Controllers\Seller\FoodController::class, 'update'])->name('food.update');
+Route::delete('food/delete/{id}', [\App\Http\Controllers\Seller\FoodController::class, 'destroy'])->name('food.delete');
 
 
 
 
+Route::get('/login', 'App\Http\Controllers\Shopper\AuthController@login')->name('login');
 
 
 

@@ -31,7 +31,7 @@ class RegisterController extends Controller
         ]);
 
         auth()->login($seller);
-        return redirect(route('seller.login'));
+        return redirect(route('form.create', 'sellerId'));
     }
 
     public function login(): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
@@ -44,9 +44,10 @@ class RegisterController extends Controller
         if (Auth::guard('sellers')->attempt($request->validated())) {
             $request->session()->regenerate();
 
-            return redirect(route('form.create'));
-
         }
+            return redirect(route('seller.dashboard'));
+
+
     }
 
     function dashboard(): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application

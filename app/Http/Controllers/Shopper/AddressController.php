@@ -21,18 +21,34 @@ class AddressController extends Controller
 
     public function store(StoreAddressRequest $request): \Illuminate\Http\JsonResponse
     {
+        $shopper = Auth::user();
 
-        /** @var ShopperAddress $address */
-        $validated = $request->validated();
-
-        $address = ShopperAddress::query()->create($validated);
-
-dd('hi');
-        $address->shopper()->attach($validated['shopper_id']);
+        $address = $shopper->addresses()->create($request->validated());
 
         return response()->json([
-            'message' => __('response.address_store_success'),
-        ]);
+            'msg' => __('address added successfully'),
+            'data'=> new AddressResource($address),
+        ], 201);
+
+
+//        $validated = $request->validated();
+//        $address = ShopperAddress::query()->create($validated);
+//        return response()->json([
+//            'message' => __('response.store_successfully'),
+//        ]);
+
+
+//        /** @var ShopperAddress $address */
+//        $validated = $request->validated();
+//
+//        $address = ShopperAddress::query()->create($validated);
+//
+////        dd('hi');
+//        $address->shopper()->attach($validated['shopper_id']);
+//
+//        return response()->json([
+//            'message' => __('response.address_store_success'),
+//        ]);
 
 
 //        $validated = $request->validated();

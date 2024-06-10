@@ -14,14 +14,12 @@ return new class extends Migration
         Schema::create('restaurants', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignIdFor(\App\Models\Seller\Seller::class)->constrained();
-            $table->foreignIdFor(\App\Models\Admin\RestaurantCategory::class)->constrained();
+            $table->foreignId('seller_id')->constrained('sellers')->onDelete('cascade');
+            $table->foreignId('category_id')->constrained('restaurant_categories')->onDelete('cascade');
             $table->string('phone_number');
             $table->string('address');
             $table->string('account');
-            $table->string('is_open')->nullable();
-            $table->string('agenda')->nullable();
-            $table->string('total_cost')->nullable();
+            $table->string('is_open')->nullable()->default('false');
             $table->string('photo')->nullable();
             $table->timestamps();
         });

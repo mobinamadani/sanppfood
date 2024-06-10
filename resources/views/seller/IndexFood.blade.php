@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>صفحه نمایش غذا ها</title>
+    <title>نمایش غذا ها</title>
     <!-- base:css -->
     <link rel="stylesheet" href="../../vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="../../vendors/feather/feather.css">
@@ -123,7 +123,7 @@
                 <li class="nav-item">
                     <a class="nav-link">
                         <i class="icon-box menu-icon"></i>
-                        <span class="menu-title">فروشنده</span>
+                        <span class="menu-title">داشبورد</span>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -134,15 +134,14 @@
                     </a>
                     <div class="collapse" id="ui-basic">
                         <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"> <a class="nav-link" href="{{route('restaurantCategories.create')}}">مشخصات رستوران</a></li>
-                            <li class="nav-item"> <a class="nav-link" href="{{route('foodCategory.create')}}">ساعت کاری</a></li>
-                            <li class="nav-item"> <a class="nav-link" href="{{route('foodCategory.create')}}">هزینه ارسال</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="{{route('food.create')}}">افزودن غذا </a></li>
+                            <li class="nav-item"> <a class="nav-link" href="{{route('food.index')}}">نمایش غذا</a></li>
                         </ul>
                     </div>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="../../pages/charts/chartjs.html">
+                    <a class="nav-link">
                         <i class="icon-pie-graph menu-icon"></i>
                         <span class="menu-title">گزارش فروش</span>
                     </a>
@@ -150,22 +149,18 @@
 
 
                 <li class="nav-item">
-                    <a class="nav-link" href="../../docs/documentation.html">
-                        <i class="icon-disc menu-icon"></i>
-                        <span class="menu-title">نمایش غذا ها</span>
+                    <a class="nav-link">
+                        <i class="icon-book menu-icon"></i>
+                        <span class="menu-title">ویرایش حساب کاربری</span>
                     </a>
                 </li>
 
-                <form action="{{route('seller.logout')}}" method="post">
-                    @csrf
-                    @method('DELETE')
-                    <li  class="nav-item">
-                        <a class="nav-link" href="{{route('seller.logout')}}">
-                            <i class="icon-book menu-icon"></i>
-                            <span class="menu-title">خروج</span>
-                        </a>
-                    </li>
-                </form>
+                <li  class="nav-item">
+                    <a class="nav-link" href="{{route('seller.logout')}}">
+                        <i class="icon-book menu-icon"></i>
+                        <span class="menu-title">خروج</span>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- partial -->
@@ -175,68 +170,78 @@
                     <div class="col-md-6 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <h2 class="card-title">لیست غذا ها</h2>
-                                    <div>
-                                        <table>
-                                            <tr>
-                                                <th>نام</th>
-                                                <th>ماد اولیه</th>
-                                                <th>قیمت</th>
-                                                <th>عکس</th>
-                                                <th>دسته بندی</th>
-                                                <th>تخفیف</th>
-                                                <th>اکشن</th>
-                                            </tr>
-                                            @foreach($foods as $food)
-                                                <td>{{ $food->name }}</td>
-                                                <td>{{ $food->recipe }}</td>
-                                                <td>{{ $food->price }}</td>
-                                                <td>{{ $food->photo}}</td>
-                                            @endforeach
+                                <h4 class="card-title">نمایش غذا ها</h4>
+
+                                <table class="table table-striped">
+                                    <tr>
+                                        <th>نام</th>
+                                        <th>مواد اولیه</th>
+                                        <th>قیمت</th>
+                                        <th>دسته بندی</th>
+{{--                                        <th>تخفیف</th>--}}
+                                        <th>تاریخ ایجاد</th>
+                                        <th>اکشن</th>
+                                    </tr>
+                                    @foreach($foods as $food)
+                                        <tr>
+                                            <td>{{$food->name}}</td>
+                                            <td>{{$food->recipe}}</td>
+                                            <td>{{$food->price}}</td>
                                             <td>
                                                 @foreach($food->foodcategories as $category)
                                                     {{ $category->name }}
                                                 @endforeach
                                             </td>
-                                            <td>{{ optional($food->discount)->name }}</td>
 
-                                        </table>
-                                    </div>
-                        </div>
-                    </div>
+{{--                                            <td>{{ optional($food->discount)->name }}</td>--}}
+                                            <td>{{$food->created_at}}</td>
+                                            <td>
+                                                <ul>
+                                                    <li>
+                                                        <form action="{{ route('food.delete', $food->id)}}" method="post">
+                                                            @method('DELETE')
+                                                            @csrf
+                                                            <input type="hidden" value="{{ $food->id }}" name="id">
+                                                            <input type="submit" value="حذف" >
+                                                        </form>
+                                                    </li>
 
+                                                    <li>
+                                                        <form action="{{ route('food.edit' , $food->id)}}" method="post">
+                                                            @method('GET')
+                                                            @csrf
 
-
-
-                                <!-- content-wrapper ends -->
-                                <!-- partial:../../partials/_footer.html -->
-
-                                <!-- partial -->
-                            </div>
-                            <!-- main-panel ends -->
-                        </div>
-                        <!-- page-body-wrapper ends -->
-                    </div>
-                    <!-- container-scroller -->
-                    <!-- base:js -->
-                    <script src="../../vendors/base/vendor.bundle.base.js"></script>
-                    <!-- endinject -->
-                    <!-- inject:js -->
-                    <script src="../../js/off-canvas.js"></script>
-                    <script src="../../js/hoverable-collapse.js"></script>
-                    <script src="../../js/template.js"></script>
-                    <!-- endinject -->
-                    <!-- plugin js for this page -->
-                    <script src="../../vendors/typeahead.js/typeahead.bundle.min.js"></script>
-                    <script src="../../vendors/select2/select2.min.js"></script>
-                    <!-- End plugin js for this page -->
-                    <!-- Custom js for this page-->
-                    <script src="../../js/file-upload.js"></script>
-                    <script src="../../js/typeahead.js"></script>
-                    <script src="../../js/select2.js"></script>
-                    <!-- End custom js for this page-->
+                                                            <input type="submit" value="ویرایش">
+                                                        </form>
+                                                    </li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                </div>
+                <!-- main-panel ends -->
+            </div>
+            <!-- page-body-wrapper ends -->
+        </div>
+        <!-- container-scroller -->
+        <!-- base:js -->
+        <script src="../../vendors/base/vendor.bundle.base.js"></script>
+        <!-- endinject -->
+        <!-- inject:js -->
+        <script src="../../js/off-canvas.js"></script>
+        <script src="../../js/hoverable-collapse.js"></script>
+        <script src="../../js/template.js"></script>
+        <!-- endinject -->
+        <!-- plugin js for this page -->
+        <script src="../../vendors/typeahead.js/typeahead.bundle.min.js"></script>
+        <script src="../../vendors/select2/select2.min.js"></script>
+        <!-- End plugin js for this page -->
+        <!-- Custom js for this page-->
+        <script src="../../js/file-upload.js"></script>
+        <script src="../../js/typeahead.js"></script>
+        <script src="../../js/select2.js"></script>
+        <!-- End custom js for this page-->
 </body>
 
 </html>
-
 

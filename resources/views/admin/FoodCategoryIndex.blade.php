@@ -121,7 +121,7 @@
             </div>
             <ul class="nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="../../index.html">
+                    <a class="nav-link">
                         <i class="icon-box menu-icon"></i>
                         <span class="menu-title">داشبورد</span>
                     </a>
@@ -134,8 +134,8 @@
                     </a>
                     <div class="collapse" id="ui-basic">
                         <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"> <a class="nav-link" href="../../pages/ui-features/AdminCreateRestaurant.blade.php">رستوران</a></li>
-                            <li class="nav-item"> <a class="nav-link" href="../../pages/food/AdminCreateFood.blade.php">غذا</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="{{route('restaurantCategories.create')}}">رستوران</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="{{route('foodCategory.create')}}">غذا</a></li>
                         </ul>
                     </div>
                 </li>
@@ -190,7 +190,7 @@
                     <div class="col-md-6 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">لیست غذا ها</h4>
+                                <h4 class="card-title">لیست غذاها</h4>
                                 <p class="card-description">
 
                                 </p>
