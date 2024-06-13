@@ -37,7 +37,6 @@
                 <input type="password" name="password" id="password" placeholder="رمزعبور"  required>
                 <button>ثبت نام</button>
             </form>
-
         </div>
 
 

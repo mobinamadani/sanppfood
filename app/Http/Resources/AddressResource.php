@@ -16,12 +16,14 @@ class AddressResource extends JsonResource
     {
 //        return parent::toArray($request);
 
+        $address = $this->resource;
+
         return[
-            'id' => $this->id,
-            'title' => $this->title,
-            'address' => $this->address,
-            'latitude' => $this>latitude,
-            'longitude' => $this->longitude,
+            'id' => $address->id,
+            'title' => $address->title,
+            'address' => $address->address,
+            'latitude' => $address->latitude,
+            'longitude' => $address->longitude,
         ];
     }
 

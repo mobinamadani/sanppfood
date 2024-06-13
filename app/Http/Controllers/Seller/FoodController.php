@@ -34,9 +34,7 @@ class FoodController extends Controller
         $validated = $request->validated();
 
         $food = Food::query()->create($validated);
-//        dd($request);
         $food-> foodCategories()->attach($validated['food_category_id']);
-
 
        return redirect()->route('food.index');
     }
@@ -47,20 +45,30 @@ class FoodController extends Controller
         $foodCategories = FoodCategory::all();
         $discounts = Discount::all();
 
-        return view('seller.EditFood', compact('food' , 'foodCategories' , 'discounts'));
+        return view('seller.EditFood', ['food' => $food, 'foodCategories' => $foodCategories, 'discounts' => $discounts]);
     }
 
-    public function update(UpdateFoodRequest $request, Food $food): \Illuminate\Http\RedirectResponse
+    public function update(UpdateFoodRequest $request, int $id): \Illuminate\Http\RedirectResponse
     {
-        $validated = $request->validated();
-        $food->update($validated);
+        $findFood = Food::query()->findOrFail($id);
+        $findFood->update([
+            'name'=>$request->name,
+            'recipe'=>$request->recipe,
+            'price'=>$request->price,
+            'food_category_id'=>$request->food_category_id,
+            'discount_id'=>$request->discount_id,
+        ]);
 
-        if (isset($validated['category_id'])) {
-            $food->categories()->sync($validated['category_id']);
-        }
-//        $food->foodcategories()->sync($request->input('food_category_id'));
+        return redirect()->route('food.index', $id);
+//        $validated = $request->validated();
+//        $food->update($validated);
 
-        return redirect()->route('food.index');
+//        if (isset($validated['category_id'])) {
+//            $food->categories()->sync($validated['category_id']);
+//        }
+
+//        dd($request);
+
     }
 
 public function destroy(DeleteFoodRequest $request): \Illuminate\Http\RedirectResponse

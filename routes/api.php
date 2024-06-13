@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 */
 //
 
+
 //Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //    return $request->user();
 //});
@@ -36,35 +37,32 @@ Route::post('shopper-logout', [\App\Http\Controllers\Shopper\AuthController::cla
 //Route::post('/address/store', [\App\Http\Controllers\Shopper\AddressController::class, 'store'])->name('address.store');
 //Route::post('/{address}', [\App\Http\Controllers\Shopper\AddressController::class, 'setCurrentAddress'])->name('address.setCurrentAddress');
 
+
+//
 //Route::middleware('auth:shopper')->group(function () {
-//    //address
-//    Route::prefix('address')
+//
+//    Route::prefix('addresses')
+//        ->name('addresses.')
 //        ->controller(\App\Http\Controllers\Shopper\AddressController::class)
-//        ->name('address.')
 //        ->group(function () {
+//            //address
 //            Route::get('/index', 'index')->name('index');
-//            Route::get('/store', 'store')->name('store');
+//            Route::post('/store', 'store')->name('store');
 //            Route::post('/{address}', 'setCurrent')->name('set-current');
 //        });
 //
 //});
 
-
-Route::middleware('auth:shopper')->group(function () {
-
+//Route::middleware('auth:shopper')->group(function () {
     Route::prefix('addresses')
         ->name('addresses.')
         ->controller(\App\Http\Controllers\Shopper\AddressController::class)
         ->group(function () {
-            //address
-            Route::get('/index', 'index')->name('index');
-            Route::post('/store', 'store')->name('store');
+            Route::get('/', 'index')->name('index');
+            Route::post('/', 'store')->name('store');
             Route::post('/{address}', 'setCurrent')->name('set-current');
         });
-
-});
-
-
+//});
 
 
 ////Get Restaurant
@@ -74,7 +72,7 @@ Route::middleware('auth:shopper')->group(function () {
 
 
 ////Get Food
-    Route::get('restaurants/{restaurantId}/food', [\App\Http\Controllers\Shopper\FoodRestaurantController::class, 'index'])->name('foodRestaurant.index');
+    Route::get('/restaurants/{restaurant}/foods', [\App\Http\Controllers\Shopper\FoodRestaurantController::class, 'index'])->name('restaurant.foods');
 
 
 ////Carts

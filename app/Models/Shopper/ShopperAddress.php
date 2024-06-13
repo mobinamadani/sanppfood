@@ -14,11 +14,13 @@ class ShopperAddress extends Model
         'address',
         'latitude',
         'longitude',
-        'shopper_id'
+//        'shopper_id'
     ];
 
     public function Shopper(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsToMany(Shopper::class);
+        return $this->belongsTO(Shopper::class);
     }
+
+
 }

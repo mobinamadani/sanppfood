@@ -7,7 +7,8 @@ use App\Http\Requests\API\Address\CurrentAddressRequest;
 use App\Http\Requests\API\Address\StoreAddressRequest;
 use App\Http\Resources\AddressResource;
 use App\Models\Shopper\ShopperAddress;
-use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
+//use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
 
 class AddressController extends Controller
@@ -21,45 +22,54 @@ class AddressController extends Controller
 
     public function store(StoreAddressRequest $request): \Illuminate\Http\JsonResponse
     {
-        $shopper = Auth::user();
 
-        $address = $shopper->addresses()->create($request->validated());
+        $validated = $request->validated();
+
+        $address = ShopperAddress::query()->create();
+//        dd('$request');
+        $address->shoppers()->attach($validated['shopper_id']);
 
         return response()->json([
-            'msg' => __('address added successfully'),
-            'data'=> new AddressResource($address),
+            'message' => __('address added successfully'),
+            'data' => AddressResource::make($address)
         ], 201);
 
 
-//        $validated = $request->validated();
-//        $address = ShopperAddress::query()->create($validated);
-//        return response()->json([
-//            'message' => __('response.store_successfully'),
+//        $request->validate([
+//            'shopper_id' => 'required',
+//            'title' => 'required',
+//            'address' => 'required',
+//            'latitude' => 'required',
+//            'longitude' => 'required',
 //        ]);
+//
+//        $address = new Address;
+//        $address->shopper_id = $request->shopper_id;
+//        $address->title = $request->title;
+//        $address->address = $request->address;
+//        $address->latitude = $request->latitude;
+//        $address->latitude = $request->latitude;
+//        $address->save();
+//
+//        {
+//
+//        return response()->json(['message' => 'Address added successfully', 'address' => $address]);
 
 
-//        /** @var ShopperAddress $address */
-//        $validated = $request->validated();
-//
-//        $address = ShopperAddress::query()->create($validated);
-//
-////        dd('hi');
-//        $address->shopper()->attach($validated['shopper_id']);
+
+
+//        $shopper = Auth::user();
+//        $address = $shopper->address()->create($request->validated());
 //
 //        return response()->json([
-//            'message' => __('response.address_store_success'),
-//        ]);
+//            'msg' => __('address added successfully'),
+//            'data'=> new AddressResource($address),
+//        ], 201);
 
 
-//        $validated = $request->validated();
-//        $address = ShopperAddress::query()->create($validated);
-//        return response()->json([
-//            'message' => __('response.store_successfully'),
-//        ]);
-//        return AddressResource::make($address);
     }
 
-    public function setCurrentAddress(CurrentAddressRequest $request, Address $address): \Illuminate\Http\JsonResponse
+    public function setCurrentAddress(CurrentAddressRequest $request, ShopperAddress $address): \Illuminate\Http\JsonResponse
     {
         if ($address->shopper_id !== Auth::id()) {
             return response()->json(['message' => 'Unauthorized access to the address'], 403);

@@ -22,11 +22,11 @@ class StoreAddressRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title'=> ['required', 'string'],
-            'address' => ['required', 'string'],
-            'latitude' => ['required', 'string'],
-            'longitude' => ['required',  'string'],
-            'shopper_id' => ['required', 'integer'],
+            'title'=> ['required'],
+            'address' => ['required'],
+            'latitude' => ['required'],
+            'longitude' => ['required'],
+            'shopper_id' => ['required'],
         ];
     }
 }

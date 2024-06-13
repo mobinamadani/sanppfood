@@ -22,7 +22,7 @@ class IndexFoodResource extends JsonResource
         if($this->discounnt){
             $sale = [
                 'label'=> $this->discount['name'],
-                'factor'=>$this->discount['amount'],
+                'factor'=>$this->discount['price'],
             ];
         }
 
@@ -34,7 +34,7 @@ class IndexFoodResource extends JsonResource
                     'id' => $this->id,
                     'title' => $this->name,
                     'price' => $this->price,
-                    'recipe' => $this->material,
+                    'recipe' => $this->recipe,
                     'image' => $this->photo,
                 ]
             ]

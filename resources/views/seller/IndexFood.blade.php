@@ -193,7 +193,7 @@
                                                 @endforeach
                                             </td>
 
-{{--                                            <td>{{ optional($food->discount)->name }}</td>--}}
+{{--                                            <td>{{ optional($food->discount)->id }}</td>--}}
                                             <td>{{$food->created_at}}</td>
                                             <td>
                                                 <ul>

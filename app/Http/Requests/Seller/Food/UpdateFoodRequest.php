@@ -22,11 +22,11 @@ class UpdateFoodRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string'],
+            'name' => ['required'],
             'price' => ['required'],
             'recipe' => ['required'],
-            'food_category_id'=> ['string'],
-            'discount_id' => ['string'],
+            'food_category_id'=> ['required'],
+            'discount_id' => ['required'],
         ];
     }
 }

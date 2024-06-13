@@ -20,6 +20,7 @@ class Food extends Model
         'seller_id',
     ];
 
+
     public function foodcategories(){
         return $this->belongsToMany(FoodCategory::class ,'food_food_category' );
     }

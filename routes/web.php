@@ -20,7 +20,7 @@ Route::get('/', function () {
 });
 
 
-////routes of Admin
+////routes of AdminAuth
 Route::get('admin/login', [\App\Http\Controllers\Admin\AuthController::class, 'login'])->name('admin.login');
 Route::post('admin/store', [\App\Http\Controllers\Admin\AuthController::class, 'store'])->name('admin.store');
 Route::get('admin/dashboard', [\App\Http\Controllers\Admin\AuthController::class, 'dashboard'])->name('admin.dashboard');
@@ -54,7 +54,7 @@ Route::put('AdminDiscount/update/{id}', [\App\Http\Controllers\Admin\DiscountCon
 Route::delete('AdminDiscount/delete/{id}', [\App\Http\Controllers\Admin\DiscountController::class, 'destroy'])->name('AdminDiscount.delete');
 
 
-////routes of Seller
+////routes of SellerAuth
 Route::get('seller/register', [\App\Http\Controllers\Seller\RegisterController::class, 'register'])->name('seller.register');
 Route::post('seller/register', [\App\Http\Controllers\Seller\RegisterController::class, 'store'])->name('register.store');
 Route::get('seller/login', [\App\Http\Controllers\Seller\RegisterController::class, 'login'])->name('seller.login');
@@ -62,12 +62,12 @@ Route::post('seller/submitLogin', [\App\Http\Controllers\Seller\RegisterControll
 Route::get('seller/logout', [\App\Http\Controllers\Seller\RegisterController::class, 'logout'])->name('seller.logout');
 
 
-////Panel of Seller
+////Panel of SellerDashboard
 Route::get('seller/dashboard', [\App\Http\Controllers\Seller\RegisterController::class, 'dashboard'])->name('seller.dashboard');
 Route::get('restaurant/info', [\App\Http\Controllers\Seller\DashboardController::class, 'RestaurantInfo'])->name('restaurant.info');
 
 
-////routes of Restaurant(Seller)
+////routes of CreateRestaurant(Seller)
 Route::get('restaurant/index',[\App\Http\Controllers\Seller\RestaurantController::class, 'index'])->name('restaurant.index');
 Route::get('restaurant/form/{sellerId}', [\App\Http\Controllers\Seller\RestaurantController::class, 'create'])->name('form.create');
 Route::post('restaurant/store', [\App\Http\Controllers\Seller\RestaurantController::class, 'store'])->name('restaurant.store');
