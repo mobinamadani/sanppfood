@@ -53,8 +53,8 @@ Route::post('shopper-logout', [\App\Http\Controllers\Shopper\AuthController::cla
 //
 //});
 
-//Route::middleware('auth:shopper')->group(function () {
-    Route::prefix('addresses')
+Route::middleware('auth:shopper')->group(function () {
+    Route::prefix('addresses/')
         ->name('addresses.')
         ->controller(\App\Http\Controllers\Shopper\AddressController::class)
         ->group(function () {
@@ -62,7 +62,7 @@ Route::post('shopper-logout', [\App\Http\Controllers\Shopper\AuthController::cla
             Route::post('/', 'store')->name('store');
             Route::post('/{address}', 'setCurrent')->name('set-current');
         });
-//});
+});
 
 
 ////Get Restaurant

@@ -90,7 +90,7 @@ return [
           'model' => Seller::class,
         ],
 
-        'shopper' => [
+        'shoppers' => [
             'driver' => 'eloquent',
             'model' => \App\Models\Shopper\Shopper::class,
         ],
