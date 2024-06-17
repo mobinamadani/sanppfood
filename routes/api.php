@@ -39,19 +39,7 @@ Route::post('shopper-logout', [\App\Http\Controllers\Shopper\AuthController::cla
 
 
 //
-//Route::middleware('auth:shopper')->group(function () {
-//
-//    Route::prefix('addresses')
-//        ->name('addresses.')
-//        ->controller(\App\Http\Controllers\Shopper\AddressController::class)
-//        ->group(function () {
-//            //address
-//            Route::get('/index', 'index')->name('index');
-//            Route::post('/store', 'store')->name('store');
-//            Route::post('/{address}', 'setCurrent')->name('set-current');
-//        });
-//
-//});
+
 
 Route::middleware('auth:shopper')->group(function () {
     Route::prefix('addresses/')
@@ -60,7 +48,7 @@ Route::middleware('auth:shopper')->group(function () {
         ->group(function () {
             Route::get('/', 'index')->name('index');
             Route::post('/', 'store')->name('store');
-            Route::post('/{address}', 'setCurrent')->name('set-current');
+            Route::post('/{address}', 'setCurrentAddress')->name('set-current');
         });
 });
 

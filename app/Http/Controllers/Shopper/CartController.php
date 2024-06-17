@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\API\StoreCartRequest;
 use App\Http\Requests\API\UpdateCartRequest;
 use App\Http\Resources\IndexCartResource;
+use App\Models\Order;
 use App\Models\Seller\Food;
 use App\Models\Shopper\Cart;
 use Illuminate\Http\Request;
@@ -49,12 +50,13 @@ class CartController extends Controller
         $validated = $request->validated();
         $cart = Cart::checkCartId($cartId)->update($validated);
         return response()->json([
-            'msg' => __('response.cart_update_successfully')
+            'msg' => __('response.cart_updated_successfully')
         ]);
     }
 
     public function cartPay(int $cartId)
     {
+
 
     }
 

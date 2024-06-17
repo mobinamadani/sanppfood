@@ -6,28 +6,33 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\API\Address\CurrentAddressRequest;
 use App\Http\Requests\API\Address\StoreAddressRequest;
 use App\Http\Resources\AddressResource;
-use App\Models\Shopper\ShopperAddress;
+use App\Models\Shopper\Shopper;
+use App\Models\Shopper\ShopperShopperAddress;
 //use Illuminate\Http\Request;
 //use Illuminate\Pagination\Paginator;
+//use http\Client\Request;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Carbon;
 
 class AddressController extends Controller
 {
     public function index(): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
-        $addresses = ShopperAddress::all();
+        $addresses = ShopperShopperAddress::all();
         return AddressResource::collection($addresses);
 
     }
 
-    public function store(StoreAddressRequest $request): \Illuminate\Http\JsonResponse
+    public function store(StoreAddressRequest $request)
     {
-
-        $validated = $request->validated();
-
-        $address = ShopperAddress::query()->create();
+//        $validated = $request->validated();
+//        $address = ShopperShopperAddress::query()->create($validated);
 //        dd('$request');
-        $address->shoppers()->attach($validated['shopper_id']);
+//        $address->shoppers()->attach($validated['shopper_id']);
+
+        $shopper = Auth::user();
+        $address = $shopper->addresses()->create($request->validated());
 
         return response()->json([
             'message' => __('address added successfully'),
@@ -69,22 +74,54 @@ class AddressController extends Controller
 
     }
 
-    public function setCurrentAddress(CurrentAddressRequest $request, ShopperAddress $address): \Illuminate\Http\JsonResponse
+    public function setCurrentAddress(Request $request, $addressId): \Illuminate\Http\JsonResponse
     {
-        if ($address->shopper_id !== Auth::id()) {
-            return response()->json(['message' => 'Unauthorized access to the address'], 403);
-        }
+        // Find the address record based on the addressId and shopper_id
+        $address = ShopperShopperAddress::where('id', $addressId)
+            ->where('shopper_id', Auth::id())
+            ->first();
 
-        ShopperAddress::query()->where('shopper_id', Auth::id())->update(['is_current' => false]);
+        // Update other address records for the same shopper
+        ShopperShopperAddress::where('shopper_id', Auth::id())
+            ->where('id', '!=', $addressId)
+            ->update(['is_current' => false]);
 
+        // Disable timestamps on the model instance
+        $address->timestamps = false;
 
-        $address->is_current = true;
-        $address->save();
+        // Set the current address and manually update 'updated_at' field
+        $address->update(['is_current' => true, 'updated_at' => Carbon::now()]);
+
+        // Re-enable timestamps on the model instance
+        $address->timestamps = true;
 
         return response()->json([
-            'msg' => __('response.buyer.set_current_address'),
-            'data'=> new AddressResource($address),
+            'message' => 'Current address successfully updated',
+            'data' => $address
         ]);
+    }
+
+
+
+
+
+
+
+
+//        if ($address->shopper_id !== Auth::id()) {
+//            return response()->json(['message' => 'Unauthorized access to the address'], 403);
+//        }
+//
+//        ShopperShopperAddress::query()->where('shopper_id', Auth::id())->update(['is_current' => false]);
+//
+//
+//        $address->is_current = true;
+//        $address->save();
+//
+//        return response()->json([
+//            'msg' => __('response.buyer.set_current_address'),
+//            'data'=> new AddressResource($address),
+//        ]);
 
 
 //        $validated = $request->validated();
@@ -101,7 +138,7 @@ class AddressController extends Controller
 //            'message' => __('response.address_setCurrent_success'),
 //            'data' => AddressResource::make($shopper_address)
 //        ], Response::HTTP_OK);
-    }
+//    }
 
 
 

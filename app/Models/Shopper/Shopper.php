@@ -6,8 +6,9 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Foundation\Auth\User as Authenticate;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
-class Shopper extends Model
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Auth\Authenticatable as AuthenticableTrait;
+class Shopper extends Model implements Authenticatable
 {
     use HasFactory;
 
@@ -19,17 +20,23 @@ class Shopper extends Model
       'phone_number',
     ];
 
-    public function ShopperAddress(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    use AuthenticableTrait;
+
+    public function getAuthIdentifier()
     {
-        return $this->belongsToMany(ShopperAddress::class)->withPivot('current_address');
+        return $this->getKey();
     }
 
-    public function currentAddress(): Attribute
+    public function addresses()
     {
-        return Attribute::make(
-            get: fn() => $this->shopper_addresses()
-                ->wherePivot('current_address', true)
-                ->first()
-        );
+        return $this->hasMany(ShopperShopperAddress::class);
+    }
+
+
+    public function ShopperAddress(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(ShopperShopperAddress::class)->withPivot('current_address');
     }
 }
+
+

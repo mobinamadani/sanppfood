@@ -34,8 +34,10 @@ class FoodController extends Controller
         $validated = $request->validated();
 
         $food = Food::query()->create($validated);
-        $food-> foodCategories()->attach($validated['food_category_id']);
 
+//        $food-> category()->attach($validated['food_category_id']);
+        $food->category()->attach($validated['food_category_id']);
+//        dd($food);
        return redirect()->route('food.index');
     }
 
@@ -50,7 +52,9 @@ class FoodController extends Controller
 
     public function update(UpdateFoodRequest $request, int $id): \Illuminate\Http\RedirectResponse
     {
+
         $findFood = Food::query()->findOrFail($id);
+//        dd($findFood);
         $findFood->update([
             'name'=>$request->name,
             'recipe'=>$request->recipe,
@@ -58,8 +62,8 @@ class FoodController extends Controller
             'food_category_id'=>$request->food_category_id,
             'discount_id'=>$request->discount_id,
         ]);
-
-        return redirect()->route('food.index', $id);
+//        dd($findFood);
+        return redirect()->route('food.index');
 //        $validated = $request->validated();
 //        $food->update($validated);
 

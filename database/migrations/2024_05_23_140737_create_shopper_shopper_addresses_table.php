@@ -11,13 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('shopper_addresses', function (Blueprint $table) {
+        Schema::create('shopper_shopper_addresses', function (Blueprint $table) {
             $table->id();
             $table->string('title');
             $table->string('address');
             $table->string('latitude');
             $table->string('longitude');
-//            $table->foreignIdFor(\App\Models\Shopper\Shopper::class)->constrained();
+            $table->boolean('is_current')->default(false);
+            $table->foreignId('shopper_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('shopper_addresses');
+        Schema::dropIfExists('shopper_shopper_addresses');
     }
 };

@@ -5,7 +5,7 @@ namespace App\Models\Shopper;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ShopperAddress extends Model
+class ShopperShopperAddress extends Model
 {
     use HasFactory;
 
@@ -17,10 +17,14 @@ class ShopperAddress extends Model
 //        'shopper_id'
     ];
 
-    public function Shopper(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function shopper()
     {
-        return $this->belongsTO(Shopper::class);
+        return $this->belongsTo(Shopper::class);
     }
 
+    public function getRouteKeyName()
+    {
+        return 'id'; // Define the primary key field for route model binding
+    }
 
 }

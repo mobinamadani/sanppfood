@@ -188,9 +188,11 @@
                                             <td>{{$food->recipe}}</td>
                                             <td>{{$food->price}}</td>
                                             <td>
-                                                @foreach($food->foodcategories as $category)
-                                                    {{ $category->name }}
+                                                @foreach($food->category as $category)
+                                                    {{$category->name}}
                                                 @endforeach
+{{--                                          {{$food->category->name}}--}}
+
                                             </td>
 
 {{--                                            <td>{{ optional($food->discount)->id }}</td>--}}

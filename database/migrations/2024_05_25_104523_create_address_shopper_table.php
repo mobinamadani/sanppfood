@@ -12,7 +12,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('address_shopper', function (Blueprint $table) {
-            $table->foreignId('address_id')->constrained('shopper_addresses');
+            $table->foreignId('address_id')->constrained('shopper_shopper_addresses');
             $table->foreignId('shopper_id')->constrained('shoppers');
             $table->boolean('current_address')->default(false);
             $table->primary(['address_id', 'shopper_id']);
