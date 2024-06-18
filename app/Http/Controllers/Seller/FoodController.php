@@ -9,6 +9,7 @@ use App\Http\Requests\Seller\Food\UpdateFoodRequest;
 use App\Models\Admin\Discount;
 use App\Models\Admin\FoodCategory;
 use App\Models\Seller\Food;
+use App\Models\Seller\Foods;
 use App\Models\Seller\Restaurant;
 use Illuminate\Http\Request;
 

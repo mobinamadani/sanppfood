@@ -2,7 +2,9 @@
 
 namespace App\Models\Seller;
 
+use App\Models\Admin\Discount;
 use App\Models\Admin\FoodCategory;
+use App\Models\Shopper\Cart;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -24,4 +26,14 @@ class Food extends Model
     public function category(){
         return $this->belongsToMany(FoodCategory::class );
     }
+
+    public function discount(){
+        return $this->belongsTo(Discount::class , 'discount_id');
+    }
+
+    public function cart()
+    {
+        return $this->belongsToMany(Cart::class);
+    }
 }
+

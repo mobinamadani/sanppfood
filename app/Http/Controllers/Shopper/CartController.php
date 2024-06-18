@@ -22,7 +22,7 @@ class CartController extends Controller
     public function store(StoreCartRequest $request): \Illuminate\Http\JsonResponse
     {
         $validated = $request->validated();
-        $food = Food::checkFoodId($validated['food_id'])->findOrFail($validated['food_id']);
+        $food = Food::find($validated['food_id']);
         $validated['food_id'] = $food->id;
         $validated['restaurant_id'] = $food->restaurant_id;
         $validated['shopper_id'] = \request()->shopper()->id;
@@ -31,7 +31,7 @@ class CartController extends Controller
         $validated['price'] = $cartPrice;
 
         $cart = Cart::query()->create($validated);
-        $cart->foods()->attach($request->food_id);
+        $cart->food()->attach($food->id);
         return response()->json([
             'msg:' => __('response.cart_store_successfully'),
             'cart_id' => $cart->id,
@@ -56,7 +56,26 @@ class CartController extends Controller
 
     public function cartPay(int $cartId)
     {
+        $cart = Cart::query()->find($cartId);
 
+        if ($cart) {
+            return response()->json([
+                'msg' => __('cart not found')
+            ]);
+        }
+
+        $validated['cart_id'] = $cartId;
+
+        $validated['restaurant_id'] = $cart->restaurant_id;
+        $validated['seller_id'] = $cart->seller_id;
+        $validated['shopper_id'] = $cart->shopper_id;
+
+        $validated['price'] = $cart->price;
+
+        Order::query()->create($validated);
+        return response()->json([
+            'msg' => __('response.order_add_successfully')
+        ]);
 
     }
 

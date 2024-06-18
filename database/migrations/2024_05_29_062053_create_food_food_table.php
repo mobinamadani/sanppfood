@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\seller\Food;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('food_food', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\Seller\Food::class)->constrained()->onDelete('CASCADE');
+            $table->foreignIdFor(Food::class)->constrained()->onDelete('CASCADE');
             $table->foreignIdFor(\App\Models\Admin\FoodCategory::class)->constrained()->onDelete('CASCADE');
             $table->unique(['food_id' , 'food_category_id']);
             $table->timestamps();
