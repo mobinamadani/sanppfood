@@ -25,6 +25,6 @@ class Restaurant extends Model
 
     public function seller(): \Illuminate\Database\Eloquent\Relations\HasOne
     {
-        return $this->hasOne(Seller::class);
+        return $this->belongsTo(Seller::class);
     }
 }

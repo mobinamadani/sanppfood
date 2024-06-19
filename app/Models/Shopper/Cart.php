@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Models\Shopper;
-namespace App;
 
-use App\Models\Seller\Food;
-use App\Models\Seller\Seller;
+use App\Models\Order;
+use App\Models\seller\Food;
+use App\Models\seller\Restaurant;
+use App\Models\seller\Seller;
+use App\Models\User\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,13 +15,17 @@ class Cart extends Model
     use HasFactory;
 
     protected $fillable = [
-      'shopper_id',
-      'food_id',
-      'count',
-      'price',
-//      'restaurant_id',
-      'seller_id',
+        'food_id',
+        'count',
+        'price',
+        'seller_id',
+        'shopper_id',
+        'restaurant_id',
     ];
+
+    public function order(){
+        return $this->hasOne(Order::class);
+    }
 
     public function restaurant()
     {
@@ -31,7 +37,7 @@ class Cart extends Model
         return $this->belongsTo(Seller::class);
     }
 
-    public function food()
+    public function foods()
     {
         return $this->belongsToMany(Food::class);
     }
@@ -42,5 +48,3 @@ class Cart extends Model
     }
 
 }
-
-

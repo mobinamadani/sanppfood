@@ -17,13 +17,13 @@ class OrderController extends Controller
             $restaurantId = Cart::all()->pluck('restaurant_id');
             $sellerId = Restaurant::checkRestauranId($restaurantId)->firstOrFail();
             $sellerId = $sellerId->id;
-            $order = Order::checkStatus()->paginate(3);
+            $orders = Order::checkStatus()->paginate(3);
 
-            return view('seller.Order', compact('order', 'cart', 'sellerId'));
+            return view('seller.Order', compact('orders', 'cart', 'sellerId'));
         }
     }
 
-    public function status(Request $request, $orderId): \Illuminate\Http\RedirectResponse
+    public function Status(Request $request, $orderId): \Illuminate\Http\RedirectResponse
     {
         Order::updateStatus($orderId , $request->input('status'));
         return back();
@@ -31,11 +31,7 @@ class OrderController extends Controller
 
     public function index(): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
-        $order = Order::all();
-        return view('seller.Order', compact('order'));
+        $orders = Order::all();
+        return view('seller.Order', compact('orders'));
     }
-
-
-
-
 }

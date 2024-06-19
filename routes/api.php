@@ -32,15 +32,6 @@ Route::post('/shopper-login', [\App\Http\Controllers\Shopper\AuthController::cla
 Route::post('shopper-logout', [\App\Http\Controllers\Shopper\AuthController::class, 'logout']);
 
 
-////Shopper address
-//Route::get('/address/index', [\App\Http\Controllers\Shopper\AddressController::class, 'index'])->name('address.index');
-//Route::post('/address/store', [\App\Http\Controllers\Shopper\AddressController::class, 'store'])->name('address.store');
-//Route::post('/{address}', [\App\Http\Controllers\Shopper\AddressController::class, 'setCurrentAddress'])->name('address.setCurrentAddress');
-
-
-//
-
-
 Route::middleware('auth:shopper')->group(function () {
     Route::prefix('addresses/')
         ->name('addresses.')
@@ -64,13 +55,11 @@ Route::middleware('auth:shopper')->group(function () {
 
 
 ////Carts
-    Route::middleware('auth:shopper')->post('AddCart', [\App\Http\Controllers\Seller\CartController::class, 'store'])->name('cart.store');
-    Route::middleware('auth:shopper')->get('IndexCart', [\App\Http\Controllers\Seller\CartController::class, 'index'])->name('cart.index');
-    Route::middleware('auth:shopper')->patch('carts/{cartId}', [\App\Http\Controllers\Seller\CartController::class, 'update'])->name('cart.update');
-    Route::middleware('auth:shopper')->get('carts/{cartId}', [\App\Http\Controllers\Seller\CartController::class, 'show'])->name('cart.show');
-    Route::middleware('auth:shopper')->post('carts/{cartId}/payment', [\App\Http\Controllers\Seller\CartController::class, 'payment'])->name('cart.payment');
-
-
+    Route::middleware('auth:shopper')->post('AddCart', [CartController::class, 'store'])->name('cart.store');
+    Route::middleware('auth:shopper')->get('IndexCart', [CartController::class, 'index'])->name('cart.index');
+    Route::middleware('auth:shopper')->patch('carts/{cartId}', [CartController::class, 'update'])->name('cart.update');
+    Route::middleware('auth:shopper')->get('carts/{cartId}', [CartController::class, 'show'])->name('cart.show');
+    Route::middleware('auth:shopper')->post('carts/{cartId}/payment{cart}', [CartController::class, 'payment'])->name('cart.payment');
 
 
 

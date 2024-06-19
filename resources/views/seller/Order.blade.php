@@ -140,6 +140,14 @@
                     </div>
                 </li>
 
+                <li  class="nav-item">
+                    <a class="nav-link" href="{{route('seller.order')}}">
+                        <i class="icon-book menu-icon"></i>
+                        <span class="menu-title">سفارشات</span>
+                    </a>
+                </li>
+
+
                 <li class="nav-item">
                     <a class="nav-link" href="../../pages/charts/chartjs.html">
                         <i class="icon-pie-graph menu-icon"></i>
@@ -147,12 +155,7 @@
                     </a>
                 </li>
 
-{{--                <li class="nav-item">--}}
-{{--                    <a class="nav-link" href="{{route('')}}">--}}
-{{--                        <i class="icon-pie-graph menu-icon"></i>--}}
-{{--                        <span class="menu-title">سفارش ها</span>--}}
-{{--                    </a>--}}
-{{--                </li>--}}
+
 
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('food.index')}}">
@@ -181,7 +184,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h2 class="card-title">سفارشات</h2>
-                                @if($order->isEmpty())
+                                @if($orders->isEmpty())
                                     <p class="bg-inverse-icon-warning text-white ">سفارش در حال انجام نداریم فعلا ....</p>
                                 @else
                                     <div class="table-responsive">
@@ -213,6 +216,7 @@
                                                 </tr>
                                             @endforeach
                                         </table>
+                                    </div>
                             </div>
                             <!-- main-panel ends -->
                         </div>
@@ -236,8 +240,11 @@
                     <script src="../../js/typeahead.js"></script>
                     <script src="../../js/select2.js"></script>
                     <!-- End custom js for this page-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
-
 </html>
-
-

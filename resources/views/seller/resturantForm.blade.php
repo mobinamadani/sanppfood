@@ -29,17 +29,16 @@
     <div class="main navbar">
         <div class="signin">
 
-            <form action="{{route('restaurant.store', $sellerId)}}" method="POST">
+            <form action="{{route('restaurant.store', $sellersId)}}" method="POST">
                 @csrf
 
                 <h2 for="chk" aria-hidden="true">تکمیل مشخصات رستوران</h2>
-                <input type="hidden" name="seller_id" id="seller_id" value="{{$sellerId}}">
+                <input type="hidden" name="seller_id" id="seller_id" value="{{$sellersId}}">
                 <input type="text" name="name" id="name" placeholder="نام رستوران" required>
                 <input type="number" name="phone_number" id="phone_number" placeholder="شماره تماس" required>
                 <input type="number" name="account" id="account" placeholder="شماره حساب" required>
                 <input type="string" name="address" id="address" placeholder="آدرس" required>
                 <div>
-{{--                    <input type="text" name="type" id="type" placeholder="نوع رستوران" required>--}}
                     <select class="m-l-3 p-l-2 p-b-2 border-radius"  name="category_id" id="category_id">
                         <option  value="ff" name="type" id="type" selected disabled>نوع رستوران</option>
                         @foreach($restaurantCategories as $restaurantCategory)
@@ -47,6 +46,8 @@
                         @endforeach
                     </select>
                 </div>
+
+
 
                 <button type="submit">ثبت</button>
             </form>

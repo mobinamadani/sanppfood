@@ -67,17 +67,10 @@ Route::get('seller/dashboard', [\App\Http\Controllers\Seller\RegisterController:
 Route::get('restaurant/info', [\App\Http\Controllers\Seller\DashboardController::class, 'RestaurantInfo'])->name('restaurant.info');
 
 
-////Order
-//Route::get('seller/order', [\App\Http\Controllers\Seller\OrderController::class, 'index'])->name('seller.order');
-//Route::post('seller/status{orderId}', \App\Http\Controllers\Seller\OrderController::class, 'status')->name('seller.status');
+//Order
+Route::get('seller/order', [\App\Http\Controllers\Seller\OrderController::class, 'index'])->name('seller.order');
+Route::post('seller/{orderId}', [\App\Http\Controllers\Seller\OrderController::class, 'Status'])->name('seller.status');
 
-
-////Cart
-//Route::middleware('auth:shopper')->post('carts/add' , [\App\Http\Controllers\Seller\CartController::class , 'store']);
-//Route::middleware('auth:shopper')->get('carts' , [\App\Http\Controllers\Seller\CartController::class , 'index']);
-//Route::middleware('auth:shopper')->patch('carts/{cartId}' , [\App\Http\Controllers\Seller\CartController::class , 'update']);
-//Route::middleware('auth:shopper')->get('carts/{cartId}' , [\App\Http\Controllers\Seller\CartController::class , 'show']);
-//Route::middleware('auth:customer')->get('carts/{cartId}/pay' , [\App\Http\Controllers\Seller\CartController::class , 'cartPaid']);
 
 
 ////routes of CreateRestaurant(Seller)

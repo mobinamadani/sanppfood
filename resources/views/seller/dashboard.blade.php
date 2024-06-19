@@ -140,6 +140,15 @@
                     </div>
                 </li>
 
+
+                <li  class="nav-item">
+                    <a class="nav-link" href="{{route('seller.order')}}">
+                        <i class="icon-book menu-icon"></i>
+                        <span class="menu-title">سفارشات</span>
+                    </a>
+                </li>
+
+
                 <li class="nav-item">
                     <a class="nav-link" href="../../pages/charts/chartjs.html">
                         <i class="icon-pie-graph menu-icon"></i>
@@ -176,8 +185,10 @@
                             <div class="card-body">
                                 <h2 class="card-title">Hi</h2>
                                 <h2 class="card-title">welcome back!</h2>
-
-
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
 
 
@@ -208,6 +219,7 @@
                     <script src="../../js/typeahead.js"></script>
                     <script src="../../js/select2.js"></script>
                     <!-- End custom js for this page-->
+</div>
 </body>
 
 </html>

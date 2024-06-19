@@ -140,6 +140,14 @@
                     </div>
                 </li>
 
+                <li  class="nav-item">
+                    <a class="nav-link" href="{{route('seller.order')}}">
+                        <i class="icon-book menu-icon"></i>
+                        <span class="menu-title">سفارشات</span>
+                    </a>
+                </li>
+
+
                 <li class="nav-item">
                     <a class="nav-link">
                         <i class="icon-pie-graph menu-icon"></i>
