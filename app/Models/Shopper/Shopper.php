@@ -2,6 +2,8 @@
 
 namespace App\Models\Shopper;
 
+use App\Models\Order;
+use App\Models\User\Cart;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Foundation\Auth\User as Authenticate;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -37,6 +39,17 @@ class Shopper extends Model implements Authenticatable
     {
         return $this->belongsToMany(ShopperShopperAddress::class)->withPivot('current_address');
     }
+
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class);
+    }
+
+    public function carts()
+    {
+        return $this->hasMany(\App\Models\Shopper\Cart::class);
+    }
+
 }
 
 

@@ -83,16 +83,13 @@ class CartController extends Controller
                 'msg' => __('response.cart_not_found')
             ], 404);
         }
-//        $validated = $request->validated();
-//        $cart = Cart::find($cartId)->update($validated);
-//        return response()->json([
-//            'msg' => __('response.cart_updated_successfully')
-//        ]);
     }
 
-    public function payment($cartId, $cart)
+    public function payment($cartId)
     {
+//        dd($cart);
         $cart = Cart::query()->find($cartId);
+
 
         if ($cart) {
             return response()->json([
@@ -101,25 +98,15 @@ class CartController extends Controller
         }
 
         $validated['cart_id'] = $cartId;
-
         $validated['restaurant_id'] = $cart->restaurant_id;
         $validated['seller_id'] = $cart->seller_id;
         $validated['shopper_id'] = $cart->shopper_id;
-
-//        $validated['restaurant_id'] = 1;
-//        $validated['seller_id'] = 1;
-//        $validated['shopper_id'] = 1;
-
-
-//            dd($validated);
         $validated['price'] = $cart->price;
-
 
         Order::query()->create($validated);
         return response()->json([
             'msg' => __('response.order_add_successfully')
         ]);
-
-    }
+        }
 
 }

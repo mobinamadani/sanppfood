@@ -17,6 +17,7 @@ class IndexRestaurantResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+
         $type = RestaurantCategory::query()->where('id' , $this->restaurant_category_id)->firstOrFail();
         return [
             'id'=> $this->id,
@@ -30,7 +31,6 @@ class IndexRestaurantResource extends JsonResource
             'is_open'=>$this->is_open,
             'score'=>4.5,
         ];
-
 
 //        return parent::toArray($request);
     }

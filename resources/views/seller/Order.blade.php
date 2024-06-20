@@ -184,12 +184,9 @@
                         <div class="card">
                             <div class="card-body">
                                 <h2 class="card-title">سفارشات</h2>
-                                @if($orders->isEmpty())
-                                    <p class="bg-inverse-icon-warning text-white ">سفارش در حال انجام نداریم فعلا ....</p>
-                                @else
                                     <div class="table-responsive">
                                         <table class="table table-striped mt-3 ">
-                                            <tr class="bg-warning">
+                                            <tr >
                                                 <th>شماره سفارش</th>
                                                 <th>وضعیت سفارش</th>
                                                 <th>قیمت</th>
@@ -240,11 +237,11 @@
                     <script src="../../js/typeahead.js"></script>
                     <script src="../../js/select2.js"></script>
                     <!-- End custom js for this page-->
-                    </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 </body>
 </html>
