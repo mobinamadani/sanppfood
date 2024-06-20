@@ -61,6 +61,6 @@ Route::middleware('auth:shopper')->group(function () {
     Route::middleware('auth:shopper')->get('carts/{cartId}', [CartController::class, 'show'])->name('cart.show');
     Route::middleware('auth:shopper')->post('carts/{cartId}/payment{cart}', [CartController::class, 'payment'])->name('cart.payment');
 
-
-
-
+////ShopperComment
+Route::middleware('auth:shopper')->post('comments' , [CommentController::class , 'store']);
+Route::middleware('auth:shopper')->get('comments/restaurant_id/{restaurantId}' , [CommentController::class , 'index']);

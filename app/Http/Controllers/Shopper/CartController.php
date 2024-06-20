@@ -38,6 +38,7 @@ class CartController extends Controller
         $cart = Cart::query()->create($validated);
         $cart->foods()->attach($food->id);
 
+
         return response()->json([
             'msg:' => __('response.cart_store_successfully'),
             'cart_id' => $cart->id,

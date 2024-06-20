@@ -54,6 +54,11 @@ Route::put('AdminDiscount/update/{id}', [\App\Http\Controllers\Admin\DiscountCon
 Route::delete('AdminDiscount/delete/{id}', [\App\Http\Controllers\Admin\DiscountController::class, 'destroy'])->name('AdminDiscount.delete');
 
 
+////routes od adminComment
+    Route::get('admin/comment', [\App\Http\Controllers\Admin\CommentController::class, 'index'])->name('AdminComment.index');
+    Route::delete('admin/comment/delete/{id}', [\App\Http\Controllers\Admin\CommentController::class, 'destroy'])->name('AdminComment.delete');
+
+
 ////routes of SellerAuth
 Route::get('seller/register', [\App\Http\Controllers\Seller\RegisterController::class, 'register'])->name('seller.register');
 Route::post('seller/register', [\App\Http\Controllers\Seller\RegisterController::class, 'store'])->name('register.store');
@@ -67,10 +72,17 @@ Route::get('seller/dashboard', [\App\Http\Controllers\Seller\RegisterController:
 Route::get('restaurant/info', [\App\Http\Controllers\Seller\DashboardController::class, 'RestaurantInfo'])->name('restaurant.info');
 
 
+////route of sellerComment
+Route::get('seller/comment/{orderId}' , [\App\Http\Controllers\Seller\CommentController::class , 'show'])->name('comment.show');
+Route::post('seller/comment/{commentId}' , [\App\Http\Controllers\Seller\CommentController::class , 'response'])->name('comment.response');
+Route::post('seller/comment/approve/{commentId}' , [\App\Http\Controllers\Seller\CommentController::class , 'approve'])->name('comment.approve');
+Route::post('seller/comment/delete/{commentId}' , [\App\Http\Controllers\Seller\CommentController::class , 'sendDeleteRequest'])->name('comment.delete.request');
+Route::get('seller/comment' , [\App\Http\Controllers\Seller\CommentController::class , 'index'])->name('comment.index');
+
+
 //Order
 Route::get('seller/order', [\App\Http\Controllers\Seller\OrderController::class, 'index'])->name('seller.order');
 Route::post('seller/{orderId}', [\App\Http\Controllers\Seller\OrderController::class, 'Status'])->name('seller.status');
-
 
 
 ////routes of CreateRestaurant(Seller)
