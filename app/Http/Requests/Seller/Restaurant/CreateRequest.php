@@ -23,11 +23,12 @@ class CreateRequest extends FormRequest
     {
         return [
             'name' => ['required'],
-//            'seller_id' => ['required'],
-            'category_id' => ['required', 'exists:restaurant_categories,id'],
+            'seller_id' => ['required'],
+            'category_id' => ['required'],
             'address' => ['required'],
             'account' => ['required'],
             'phone_number' => ['required'],
+            'email' => ['required'],
         ];
     }
 }

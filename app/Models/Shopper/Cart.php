@@ -29,7 +29,7 @@ class Cart extends Model
 
     public function restaurant()
     {
-        return $this->belongsTo(Restaurant::class);
+        return $this->belongsTo(Restaurant::class, 'restaurant_id');
     }
 
     public function seller()
@@ -46,5 +46,6 @@ class Cart extends Model
     {
         return $this->belongsTo(Shopper::class);
     }
+
 
 }

@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Admin\Admin;
+use App\Models\Seller\Restaurant;
+use Database\Factories\Restaurant\RestaurantFactory;
 use Illuminate\Database\Seeder;
 
 
@@ -21,11 +23,10 @@ class DatabaseSeeder extends Seeder
         ]);
 
 
-
         // \App\Models\User::factory(10)->create();
 
 //        $this->call([
-//            AdminSeeder::class,
+//            RestaurantSeeder::class,
 //
 //        ]);
 

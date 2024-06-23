@@ -28,28 +28,19 @@ class RestaurantController extends Controller
         return view('seller.resturantForm', compact('restaurantCategories', 'sellersId'));
     }
 
-    public function store(CreateRequest $request): \Illuminate\Foundation\Application|\Illuminate\Routing\Redirector|\Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse
+    public function store(Request $request): \Illuminate\Foundation\Application|\Illuminate\Routing\Redirector|\Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse
     {
-        $sellerEmail = $request->input('seller_email');
-        $seller = Seller::where('email', $sellerEmail)->first();
+//        $validated = $request->validated();
+        $validated = $request->all();
+//        Restaurant::query()->create($validated);
+//        $validated = $request->validated();
 
-        if ($seller) {
-            $validated = $request->validated();
-            $validated['seller_id'] = $seller->id;
-
-            Restaurant::query()->create($validated);
-        }
-//
-//        dd($request->all());
-
-
-        $sellerId = $request->route('sellerId');
-        $validated = $request->validated();
         $validated['seller_id'] = 1;
         $validated['category_id'] = 1;
+//        $seller = Seller::findOrFail($validated['seller_id']);
+//        $category = RestaurantCategory::findOrFail($validated['category_id']);
          Restaurant::query()->create($validated);
         return redirect(route('seller.login'));
-//        dd($request->all());
     }
 
     public function edit(Restaurant $restaurant): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application

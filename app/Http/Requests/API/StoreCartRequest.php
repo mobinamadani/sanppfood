@@ -22,7 +22,7 @@ class StoreCartRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'food_id'=> ['required', 'exists:food,id'],
+            'food_id'=> ['required'],
             'count' => ['required', 'integer'],
         ];
     }
