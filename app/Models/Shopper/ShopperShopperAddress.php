@@ -2,29 +2,55 @@
 
 namespace App\Models\Shopper;
 
+use App\Models\Order;
+use App\Models\User\Cart;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Foundation\Auth\User as Authenticate;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
-class ShopperShopperAddress extends Model
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Auth\Authenticatable as AuthenticableTrait;
+class ShopperShopperAddress extends Model implements Authenticatable
 {
     use HasFactory;
+
+    use HasApiTokens;
 
     protected $fillable = [
         'title',
         'address',
         'latitude',
         'longitude',
-//        'shopper_id'
     ];
 
-    public function shopper()
+    use AuthenticableTrait;
+
+    public function getAuthIdentifier()
     {
-        return $this->belongsTo(Shopper::class);
+        return $this->getKey();
     }
 
-    public function getRouteKeyName()
+    public function addresses()
     {
-        return 'id'; // Define the primary key field for route model binding
+        return $this->hasMany(ShopperShopperAddress::class);
+    }
+
+
+    public function ShopperAddress(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(ShopperShopperAddress::class)->withPivot('current_address');
+    }
+
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class);
+    }
+
+    public function carts()
+    {
+        return $this->hasMany(\App\Models\Shopper\Cart::class);
     }
 
 }
+
+

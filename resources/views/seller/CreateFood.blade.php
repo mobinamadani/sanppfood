@@ -148,10 +148,18 @@
                 </li>
 
 
+                <li  class="nav-item">
+                    <a class="nav-link" href="{{route('comment.index')}}">
+                        <i class="icon-book menu-icon"></i>
+                        <span class="menu-title">نظرات</span>
+                    </a>
+                </li>
+
+
                 <li class="nav-item">
-                    <a class="nav-link" href="../../pages/charts/chartjs.html">
+                    <a class="nav-link" href="{{route('seller.report')}}">
                         <i class="icon-pie-graph menu-icon"></i>
-                        <span class="menu-title">گزارش فروش</span>
+                        <span class="menu-title">گزارشات</span>
                     </a>
                 </li>
 

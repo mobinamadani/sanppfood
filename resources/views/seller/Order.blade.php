@@ -148,10 +148,18 @@
                 </li>
 
 
+                <li  class="nav-item">
+                    <a class="nav-link" href="{{route('comment.index')}}">
+                        <i class="icon-book menu-icon"></i>
+                        <span class="menu-title">نظرات</span>
+                    </a>
+                </li>
+
+
                 <li class="nav-item">
-                    <a class="nav-link" href="../../pages/charts/chartjs.html">
+                    <a class="nav-link" href="{{route('seller.report')}}">
                         <i class="icon-pie-graph menu-icon"></i>
-                        <span class="menu-title">گزارش فروش</span>
+                        <span class="menu-title">گزارشات</span>
                     </a>
                 </li>
 
@@ -186,10 +194,10 @@
                                 <h2 class="card-title">سفارشات</h2>
                                     <div class="table-responsive">
                                         <table class="table table-striped mt-3 ">
-                                            <tr >
+                                            <tr>
                                                 <th>شماره سفارش</th>
-                                                <th>وضعیت سفارش</th>
                                                 <th>قیمت</th>
+                                                <th>وضعیت سفارش</th>
                                                 <th>تاریخ ثبت</th>
                                                 <th>تغیر وضعیت</th>
                                             </tr>
@@ -200,14 +208,14 @@
                                                     <td>{{$order->status}}</td>
                                                     <td>{{$order->created_at}}</td>
                                                     <td>
-                                                        <form action="{{ route('order.status',$order['id']) }}" method="post">
+                                                        <form action="{{ route('seller.status',$order['id']) }}" method="post">
                                                             @csrf
                                                             <select name="status">
                                                                 <option value="در حال آماده سازی">در حال آماده سازی</option>
                                                                 <option value="ارسال به مقصد">ارسال به مقصد</option>
                                                                 <option value="تحویل گرفته شده">تحویل گرفته شده</option>
                                                             </select>
-                                                            <input type="submit" name="دخیره">
+                                                            <input type="submit" value="ذخیره">
                                                         </form>
                                                     </td>
                                                 </tr>

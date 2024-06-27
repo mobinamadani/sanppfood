@@ -56,8 +56,10 @@ Route::delete('AdminDiscount/delete/{id}', [\App\Http\Controllers\Admin\Discount
 
 ////routes od adminComment
     Route::get('admin/comment', [\App\Http\Controllers\Admin\CommentController::class, 'index'])->name('AdminComment.index');
-    Route::delete('admin/comment/delete/{id}', [\App\Http\Controllers\Admin\CommentController::class, 'destroy'])->name('AdminComment.delete');
+    Route::get('admin/comment/delete/{id}', [\App\Http\Controllers\Admin\CommentController::class, 'destroy'])->name('AdminComment.delete');
 
+
+    //*****************************************************************************************************************************************************************************************************************************************************************************************//
 
 ////routes of SellerAuth
 Route::get('seller/register', [\App\Http\Controllers\Seller\RegisterController::class, 'register'])->name('seller.register');
@@ -73,7 +75,7 @@ Route::get('restaurant/info', [\App\Http\Controllers\Seller\DashboardController:
 
 
 ////route of sellerComment
-Route::get('seller/comment/{orderId}' , [\App\Http\Controllers\Seller\CommentController::class , 'show'])->name('comment.show');
+Route::get('seller/comment' , [\App\Http\Controllers\Seller\CommentController::class , 'index'])->name('comment.index');
 Route::post('seller/comment/{commentId}' , [\App\Http\Controllers\Seller\CommentController::class , 'response'])->name('comment.response');
 Route::post('seller/comment/approve/{commentId}' , [\App\Http\Controllers\Seller\CommentController::class , 'approve'])->name('comment.approve');
 Route::post('seller/comment/delete/{commentId}' , [\App\Http\Controllers\Seller\CommentController::class , 'sendDeleteRequest'])->name('comment.delete.request');
@@ -104,6 +106,10 @@ Route::put('food/update/{id}', [\App\Http\Controllers\Seller\FoodController::cla
 Route::delete('food/delete/{id}', [\App\Http\Controllers\Seller\FoodController::class, 'destroy'])->name('food.delete');
 
 
+////routes of sellerReport
+Route::get('seller/report', [\App\Http\Controllers\Seller\ReportController::class, 'index'])->name('seller.report');
+Route::get('report/week', [\App\Http\Controllers\Seller\ReportController::class, 'weekReport'])->name('seller.weekReport');
+Route::get('report/month', [\App\Http\Controllers\Seller\ReportController::class, 'monthReport'])->name('seller.monthReport');
 
 
 Route::get('/login', 'App\Http\Controllers\Shopper\AuthController@login')->name('login');

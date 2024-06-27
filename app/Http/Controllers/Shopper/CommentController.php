@@ -74,8 +74,8 @@ class CommentController extends Controller
     public function show(int $orderId)
     {
         $cartId = Order::cartIdByOrderId($orderId);
-        $comments = Comment::commentByCartId($cartId)->paginate(2);
-        return view('seller.Showcomments' , compact(['comments' ,'orderId']));
+        $comments = Comment::commentByCartId($cartId);
+        return view('seller.comment' , compact(['comments' ,'orderId']));
     }
 
 

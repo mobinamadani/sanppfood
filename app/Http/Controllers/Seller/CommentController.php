@@ -14,16 +14,27 @@ class CommentController extends Controller
 {
     public function index()
     {
-        $sellerRestaurantId = Restaurant::query()->where('seller_id' , Auth::id())->get()->pluck('id')->toArray();
-        $comment = Comment::with('cart')->get();
-        $selectComments = $comment->map(function ($comment) use ($sellerRestaurantId){
-            if (in_array($comment->cart->restaurant_id , $sellerRestaurantId)){
-                return $comment->id;
-            }
-        });
-        $comments = Comment::query()->whereIn('id' , $selectComments)->orderBy('created_at' , 'desc')->paginate(5);
-        $foods = Food::query()->whereIn('id' , $comments->pluck('food_id'))->pluck('name' , 'id');
-        return view('panel-pages.seller.comments.index' , compact(['comments' , 'foods']));
+        $sellerRestaurantId = Restaurant::query()->where('seller_id', Auth::id())->get()->pluck('id')->toArray();
+        $comments = Comment::with('cart')
+            ->whereHas('cart', function ($query) use ($sellerRestaurantId) {
+                $query->whereIn('restaurant_id', $sellerRestaurantId);
+            })
+            ->orderBy('created_at', 'desc')
+            ->get();
+        $foods = Food::query()->whereIn('id', $comments->pluck('food_id'))->pluck('name', 'id');
+        return view('seller.comment', compact(['comments', 'foods']));
+
+
+//        $sellerRestaurantId = Restaurant::query()->where('seller_id' , Auth::id())->get()->pluck('id')->toArray();
+//        $comment = Comment::with('cart')->get();
+//        $selectComments = $comment->map(function ($comment) use ($sellerRestaurantId){
+//            if (in_array($comment->cart->restaurant_id , $sellerRestaurantId)){
+//                return $comment->id;
+//            }
+//        });
+//        $comments = Comment::query()->whereIn('id' , $selectComments)->orderBy('created_at' , 'desc');
+//        $foods = Food::query()->whereIn('id' , $comments->pluck('food_id'))->pluck('name' , 'id');
+//        return view('seller.comment' , compact(['comments' , 'foods']));
     }
 
 

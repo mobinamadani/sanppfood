@@ -146,12 +146,11 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../../pages/charts/chartjs.html">
+                    <a class="nav-link" href="{{route('AdminComment.index')}}">
                         <i class="icon-pie-graph menu-icon"></i>
-                        <span class="menu-title">گزارشات</span>
+                        <span class="menu-title">نظرات</span>
                     </a>
                 </li>
-
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
                         <i class="icon-head menu-icon"></i>

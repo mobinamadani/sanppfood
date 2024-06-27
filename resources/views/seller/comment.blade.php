@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>AdminDiscountIndex</title>
+    <title>داشبورد فروشنده</title>
     <!-- base:css -->
     <link rel="stylesheet" href="../../vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="../../vendors/feather/feather.css">
@@ -113,73 +113,74 @@
                     <img src="../../images/faces/face28.png">
                 </div>
                 <div class="user-name">
-                    Edward Spencer
+                    name
                 </div>
                 <div class="user-designation">
-                    Developer
+                    Seller
                 </div>
             </div>
             <ul class="nav">
                 <li class="nav-item">
                     <a class="nav-link">
                         <i class="icon-box menu-icon"></i>
-                        <span class="menu-title">داشبورد</span>
+                        <span class="menu-title">فروشنده</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
                         <i class="icon-disc menu-icon"></i>
-                        <span class="menu-title">افزودن دسته بندی</span>
+                        <span class="menu-title">صفحه تنظیمات رستوران</span>
                         <i class="menu-arrow"></i>
                     </a>
                     <div class="collapse" id="ui-basic">
                         <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"> <a class="nav-link" href="route('restaurantCategories.create')}}">رستوران</a></li>
-                            <li class="nav-item"> <a class="nav-link" href="{{route('foodCategory.create')}}">غذا</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="{{route('food.create')}}">افزودن غذا</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="{{route('food.index')}}">نمایش غذا</a></li>
                         </ul>
                     </div>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('AdminDiscount.create')}}">
-                        <i class="icon-file menu-icon"></i>
-                        <span class="menu-title">تخفیف ها</span>
+
+
+                <li  class="nav-item">
+                    <a class="nav-link" href="{{route('seller.order')}}">
+                        <i class="icon-book menu-icon"></i>
+                        <span class="menu-title">سفارشات</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('AdminComment.index')}}">
-                        <i class="icon-pie-graph menu-icon"></i>
+
+
+                <li  class="nav-item">
+                    <a class="nav-link" href="{{route('comment.index')}}">
+                        <i class="icon-book menu-icon"></i>
                         <span class="menu-title">نظرات</span>
                     </a>
                 </li>
+
+
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
-                        <i class="icon-head menu-icon"></i>
-                        <span class="menu-title">کاربران</span>
-                        <i class="menu-arrow"></i>
+                    <a class="nav-link" href="{{route('seller.report')}}">
+                        <i class="icon-pie-graph menu-icon"></i>
+                        <span class="menu-title">گزارشات</span>
                     </a>
-                    <div class="collapse" id="auth">
-                        <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"> <a class="nav-link" href="../../pages/samples/login.html"> Login </a></li>
-                            <li class="nav-item"> <a class="nav-link" href="../../pages/samples/login-2.html"> Login 2 </a></li>
-                            <li class="nav-item"> <a class="nav-link" href="../../pages/samples/register.html"> Register </a></li>
-                            <li class="nav-item"> <a class="nav-link" href="../../pages/samples/register-2.html"> Register 2 </a></li>
-                            <li class="nav-item"> <a class="nav-link" href="../../pages/samples/lock-screen.html"> Lockscreen </a></li>
-                        </ul>
-                    </div>
                 </li>
+
                 <li class="nav-item">
-                    <a class="nav-link" href="../../docs/documentation.html">
-                        <i class="icon-book menu-icon"></i>
+                    <a class="nav-link" href="{{route('food.index')}}">
+                        <i class="icon-disc menu-icon"></i>
                         <span class="menu-title">ویرایش حساب کاربری</span>
                     </a>
                 </li>
 
-                <li  class="nav-item">
-                    <a class="nav-link" href="{{route('logout')}}">
-                        <i class="icon-book menu-icon"></i>
-                        <span class="menu-title">خروج</span>
-                    </a>
-                </li>
+                <form action="{{route('seller.logout')}}" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <li  class="nav-item">
+                        <a class="nav-link" href="{{route('seller.logout')}}">
+                            <i class="icon-book menu-icon"></i>
+                            <span class="menu-title">خروج</span>
+                        </a>
+                    </li>
+                </form>
             </ul>
         </nav>
         <!-- partial -->
@@ -189,75 +190,93 @@
                     <div class="col-md-6 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">لیست تخفیف ها</h4>
-                                <p class="card-description">
+                                <div class="card-body" style="margin-top: 10px">
+                                    <h4 class="card-title"> نمایش نظرات</h4>
+                                    <div class="table-responsive">
+                                        <table class="table table-striped mt-3">
+                                            <tr>
+                                                <th>کاربر</th>
+                                                <th>شماره سفارش</th>
+                                                <th>غذا ها</th>
+                                                <th>امتیاز</th>
+                                                <th>متن پیام</th>
+                                                <th>پاسخ</th>
+                                                <th>تاریخ ثبت نظر</th>
+                                                <th>ارسال پاسخ</th>
+                                                <th>وضعیت نظر</th>
+                                                <th>درخواست حذف</th>
+                                            </tr>
 
-                                </p>
-                                <table class="table table-striped">
-                                    <tr>
-                                        <th>نام</th>
-                                        <th>قیمت</th>
-                                        <th>تاریخ</th>
-                                        <th>تاریخ ایجاد</th>
-                                        <th>اکشن</th>
-                                    </tr>
-                                    @foreach($discounts as $key => $discount)
-                                        <tr>
-                                            <td>{{$discount->name}}</td>
-                                            <td>{{$discount->price}}</td>
-                                            <td>{{$discount->date}}</td>
-                                            <td>{{$discount->created_at}}</td>
-                                            <td>
-                                                <ul>
-                                                    <li>
-                                                        <form action="{{ route('AdminDiscount.delete', $discount->id)}}" method="post">
-                                                            @method('DELETE')
+                                            @foreach($comments as $comment)
+                                                <tr>
+                                                    <td>{{$comment->id}}</td>
+                                                    <td>{{$comment->cart_id}}</td>
+                                                    <td>{{$foods[$comment->food_id]}}</td>
+                                                    <td>{{$comment->score}}</td>
+                                                    <td>{{$comment->message}}</td>
+                                                    <td>{{$comment->response}}</td>
+                                                    <td>{{$comment->created_at}}</td>
+                                                    <td>
+                                                        <form action="{{ route('comment.response' , $comment->id) }}" method="post">
                                                             @csrf
-                                                            <input type="hidden" value="{{ $discount->id }}" name="id">
-                                                            <input type="submit" value="حذف" >
+                                                            <input type="text" name="message" placeholder="پاسخ خود را اینجا بنویسید">
+                                                            <input type="submit" value="ارسال">
                                                         </form>
-                                                    </li>
-                                                    <li><a href="{{ route('AdminDiscount.edit' , $discount->id) }}">ویرایش</a></li>
-                                                </ul>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </table>
+                                                    </td>
 
-                                </form>
+                                                    <td>
+                                                        <form action="{{ route('comment.approve' , $comment->id) }}" method="post">
+                                                            @csrf
+                                                            <input type="submit" name="true" value="تایید نظر">
+                                                        </form>
+                                                    </td>
+
+                                                    <td>
+                                                        <form action="{{ route('comment.delete.request' , $comment->id) }}" method="post">
+                                                            @csrf
+                                                            <input type="submit" value="درخواست حذف نظر">
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </table>
+
+
+                                    </div>
                             </div>
                         </div>
                     </div>
-
-
-
-                    <!-- content-wrapper ends -->
-                    <!-- partial:../../partials/_footer.html -->
-
-                    <!-- partial -->
                 </div>
-                <!-- main-panel ends -->
+
+
+
+
+
+
             </div>
-            <!-- page-body-wrapper ends -->
+            <!-- main-panel ends -->
         </div>
-        <!-- container-scroller -->
-        <!-- base:js -->
-        <script src="../../vendors/base/vendor.bundle.base.js"></script>
-        <!-- endinject -->
-        <!-- inject:js -->
-        <script src="../../js/off-canvas.js"></script>
-        <script src="../../js/hoverable-collapse.js"></script>
-        <script src="../../js/template.js"></script>
-        <!-- endinject -->
-        <!-- plugin js for this page -->
-        <script src="../../vendors/typeahead.js/typeahead.bundle.min.js"></script>
-        <script src="../../vendors/select2/select2.min.js"></script>
-        <!-- End plugin js for this page -->
-        <!-- Custom js for this page-->
-        <script src="../../js/file-upload.js"></script>
-        <script src="../../js/typeahead.js"></script>
-        <script src="../../js/select2.js"></script>
-        <!-- End custom js for this page-->
+        <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- base:js -->
+    <script src="../../vendors/base/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- inject:js -->
+    <script src="../../js/off-canvas.js"></script>
+    <script src="../../js/hoverable-collapse.js"></script>
+    <script src="../../js/template.js"></script>
+    <!-- endinject -->
+    <!-- plugin js for this page -->
+    <script src="../../vendors/typeahead.js/typeahead.bundle.min.js"></script>
+    <script src="../../vendors/select2/select2.min.js"></script>
+    <!-- End plugin js for this page -->
+    <!-- Custom js for this page-->
+    <script src="../../js/file-upload.js"></script>
+    <script src="../../js/typeahead.js"></script>
+    <script src="../../js/select2.js"></script>
+    <!-- End custom js for this page-->
+</div>
 </body>
 
 </html>

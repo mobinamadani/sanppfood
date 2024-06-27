@@ -167,44 +167,22 @@ class CartController extends Controller
 
     public function payment($cartId)
     {
-        $cartId = (int) $cartId;
+        $cartId = (int) $cartId = 1;
         $cart = Cart::query()->find($cartId);
 
-        if ($cart && $cart->restaurant_id !== null) {
-            $validated = [
-                'cart_id' => $cartId,
-                'restaurant_id' => $cart->restaurant_id,
-                'seller_id' => $cart->seller_id,
-                'shopper_id' => $cart->shopper_id,
-                'price' => $cart->price,
-            ];
-
-            Order::query()->create($validated);
-            return response()->json([
-                'msg' => __('response.order_add_successfully')
-            ]);
-        } else {
-            // Handle the case where the $cart is null or the restaurant_id is null
-            return response()->json([
-                'error' => 'Invalid cart or missing restaurant_id'
-            ], 400);
-        }
-
-//        $cartId = (int) $cartId;
-//        $cart = Cart::query()->find($cartId);
 //        var_dump($cartId);
-//        $validated = [
-//            'cart_id' => $cartId,
-//            'restaurant_id' => $cart?->restaurant_id,
-//            'seller_id' => $cart?->seller_id,
-//            'shopper_id' => $cart?->shopper_id,
-//            'price' => $cart?->price,
-//        ];
-//
-//        Order::query()->create($validated);
-//        return response()->json([
-//            'msg' => __('response.order_add_successfully')
-//        ]);
+        $validated = [
+            'cart_id' => $cartId,
+            'restaurant_id' => $cart?->restaurant_id,
+            'seller_id' => $cart?->seller_id,
+            'shopper_id' => $cart?->shopper_id,
+            'price' => $cart?->price,
+        ];
+
+        Order::query()->create($validated);
+        return response()->json([
+            'msg' => __('response.order_add_successfully')
+        ]);
 
 
 //        $cart = Cart::findOrFail($cartId);
@@ -220,26 +198,6 @@ class CartController extends Controller
 //            'msg' => __('response.order_add_successfully')
 //        ]);
 
-//        $cart = Cart::query()->find($cartId);
-//
-//
-//        if ($cart) {
-//            return response()->json([
-//                'msg' => __('cart not found')
-//            ]);
-//        }
 
-//        $validated['cart_id'] = $cartId;
-//        $validated['restaurant_id'] = $cart->restaurant_id;
-//        $validated['seller_id'] = $cart->seller_id;
-//        $validated['shopper_id'] = $cart->shopper_id;
-//        $validated['price'] = $cart->price;
-//
-//        Order::query()->create($validated);
-//        return response()->json([
-//            'msg' => __('response.order_add_successfully')
-//        ]);
         }
-
-
 }

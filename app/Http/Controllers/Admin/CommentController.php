@@ -11,14 +11,23 @@ class CommentController extends Controller
 {
     public function index()
     {
-        $comments = Comment::query()->where('delete_request' , '=' , 1)->paginate(5);
-        $userName = [];
+        $comments = Comment::query()->where('delete_request', '=', 1)->get();
+        $userName= [];
 
-        if ($comments->isNotEmpty()){
-            $userId = $comments->pluck('user_id')->toArray();
-            $userName = Shopper::query()->where('id' , $userId)->pluck('name');
+        if ($comments->count() > 0) {
+            $userId = $comments->pluck('shopper_id')->toArray();
+            $userName = Shopper::query()->whereIn('id', $userId)->pluck('name');
         }
-        return view('panel-pages.admin.comments.index' , compact(['comments' , 'userName']));
+        return view('admin.comment', compact(['comments', 'userName']));
+
+//        $comments = Comment::query()->where('delete_request' , '=' , 1);
+//        $userName = [];
+//
+//        if ($comments->isNotEmpty()){
+//            $userId = $comments->pluck('shopper_id')->toArray();
+//            $userName = Shopper::query()->where('id' , $userId)->pluck('name');
+//        }
+//        return view('admin.comment' , compact(['comments', $userName]));
     }
 
     public function destroy(int $commentId)

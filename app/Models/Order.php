@@ -17,7 +17,7 @@ class Order extends Model
         'cart_id',
         'restaurant_id',
         'seller_id',
-        'user_id',
+        'shopper_id',
         'price',
         'status',
     ];
@@ -57,10 +57,13 @@ class Order extends Model
         return $query->where('id' , $orderId)->pluck('cart_id');
     }
 
-    public function scopeGetOrderWithStatus($query , $orderStatus )
+    public function scopeGetOrderWithStatus($query, $status)
     {
-        return $query->where('status' ,$orderStatus);
+        return $query->where('status', $status);
     }
 
-
+    //    public function scopeGetOrderWithStatus($query , $orderStatus )
+//    {
+//        return $query->where('status' ,$orderStatus);
+//    }
 }
